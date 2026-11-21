@@ -1,0 +1,94 @@
+PANDUAN WEBSITE TERRARIUM MT1 — EDISI BAHARU
+==========================================================
+Nama projek: Miniature Tropical Forest
+Berdasarkan: Gambar Terrarium.zip yang mengandungi 8 foto dan 1 video.
+
+A. KANDUNGAN PAKEJ
+-----------------
+index.html                    — website lengkap, dwibahasa dan responsif
+assets/*.jpeg                 — 8 gambar sebenar daripada ZIP
+assets/proses-bina.mp4        — video asal (9.366 saat, menegak)
+assets/proses-poster.jpg      — imej poster diekstrak daripada video asal
+PANDUAN_RINGKAS.txt           — panduan ini
+
+Semua fail gambar/video sudah dipautkan dalam index.html. Tiada tempat kosong
+untuk imej tambahan dan tiada URL Google Drive diperlukan.
+
+B. CARA MEMBUKA DAN MELIHAT DI LAPTOP
+-------------------------------------
+1. Ekstrak fail ZIP sehingga ada 'index.html' dan folder 'assets'.
+2. Jangan pisahkan index.html daripada folder assets.
+3. Klik dua kali index.html — ia dibuka melalui Chrome/Edge.
+4. Cuba menu, butang BM/EN, titik interaktif, penapis galeri dan video.
+5. Untuk menguji telefon sebenar, gunakan pautan website selepas diterbitkan.
+
+C. CARA MENERBITKAN UNTUK GOOGLE SITES FULL PAGE EMBED
+------------------------------------------------------
+1. Pergi ke https://app.netlify.com/drop
+2. Seret folder website yang mengandungi index.html bersama assets
+   ke kawasan 'Drop' (jangan muat naik index.html sahaja).
+3. Tunggu Netlify memberikan pautan https://....netlify.app.
+4. Buka URL itu dalam tab Incognito untuk pastikan gambar/video berfungsi.
+5. Buka editor Google Sites -> Pages -> + -> Full page embed.
+6. Pilih URL, tampalkan alamat Netlify dan simpan halaman.
+7. Terbitkan Google Sites dan uji dengan Chrome Android/iPhone.
+8. Gunakan pautan Google Sites yang sudah diterbitkan untuk QR code.
+
+Nota: Menampal kod 'index.html' terus melalui Embed code TIDAK akan memuat
+folder assets secara automatik. Untuk pakej ini, gunakan hosting dan embed URL.
+
+D. BAHAGIAN KOD YANG BOLEH DIUBAH
+--------------------------------
+Fail index.html menggunakan komen seksyen CSS untuk memudahkan pencarian.
+Guna Ctrl+F / Find untuk mencari teks di bawah:
+
+- 'const SITE_DATA' (sekitar line 500): sumber gambar, teks ciri, galeri,
+  info kumpulan, nama ketua dan senarai ahli.
+- 'const UI' (sekitar line 541): teks antaramuka dwibahasa BM/English.
+- '.hero-photo {' (sekitar line 92): bentuk / nisbah hero desktop.
+- '.feature img {' (sekitar line 115): kad gambar reka bentuk.
+- '.tour-photo {' (sekitar line 128): foto interaktif keseluruhan terrarium.
+- '.video-card video {' (sekitar line 166): saiz pemain video.
+- '.gallery-image {' (sekitar line 184): tinggi gambar galeri desktop.
+- '@media(max-width: 1150px)' (sekitar line 220): skrin laptop/tablet.
+- '@media(max-width: 900px)' (sekitar line 227): tablet dan menu mudah alih.
+- '@media(max-width: 620px)' (sekitar line 248): paparan telefon.
+- '@media(max-width: 380px)' (sekitar line 289): telefon kecil.
+
+E. CONTOH TUKAR GAMBAR
+---------------------
+1. Masukkan fail baru dalam folder assets, contoh rumah-nanas-baru.jpeg.
+2. Dalam SITE_DATA.features cari id:'pineapple' dan tukar:
+   image:'assets/rumah-nanas-baru.jpeg'
+3. Dalam SITE_DATA.gallery cari id:'pineapple' dan tukar:
+   src:'assets/rumah-nanas-baru.jpeg'
+4. Simpan index.html dan terbitkan semula keseluruhan folder.
+
+F. CONTOH MASUKKAN NAMA AHLI
+---------------------------
+Pada SITE_DATA.teams, bagi Kumpulan 4, ubah medan leader dan members:
+  leader:'Nama Ketua',
+  members:['Ahli 1','Ahli 2','Ahli 3','Ahli 4','Ahli 5']
+Gunakan nama yang telah disahkan dan mendapat persetujuan untuk dipaparkan.
+
+G. TENTANG KANDUNGAN & HAK PRIVASI
+----------------------------------
+- Foto ZIP menunjukkan hiasan hijau, laluan kerikil, medium, rumah mini dan
+  watak dekoratif. Ia tidak membuktikan spesies tumbuhan atau bahan kitar semula.
+- Video 9.366 saat menunjukkan orang mengumpulkan bahan berbatu di luar;
+  jangan label sebagai rakaman lengkap pemasangan terrarium.
+- Foto ahli mengandungi wajah. Dapatkan persetujuan semua yang dipaparkan
+  sebelum menerbitkan laman secara umum.
+- Pautan Google Drive lama tidak digunakan dalam pakej baharu ini.
+
+H. SEMAKAN SEBELUM SERAH
+------------------------
+[ ] Semua lapan gambar terpapar dalam galeri
+[ ] Video dapat dimainkan dan bunyi boleh dikawal
+[ ] Tukar BM ke English dan kembali
+[ ] Menu Android tertutup selepas tekan pautan
+[ ] Penanda interaktif (1–4) memaparkan foto yang betul
+[ ] Zoom foto dan navigasi gambar berfungsi
+[ ] Semak akses telefon menggunakan pautan awam
+[ ] Dapatkan persetujuan paparan wajah & nama ahli
+==========================================================
