@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#092d35">
-  <meta name="description" content="Miniature Tropical Forest — dokumentasi terrarium kelas MT1 berdasarkan gambar dan video projek sebenar.">
+  <meta name="description" content="Miniature Tropical Forest — terokai landskap terrarium kreatif hasil kerjasama kelas MT1.">
   <title>Miniature Tropical Forest · MT1</title>
   <style>
     /* ============================================================
@@ -144,15 +144,24 @@
     .tour-picker button[aria-pressed="true"] { color: var(--deep); border-color: var(--orange); background: var(--orange); }
 
     /* ============================================================
-       06 — BAHAN, PROSES, VIDEO
+       06 — ANATOMI LANDSKAP: SUSUNAN VISUAL INTERAKTIF
        ============================================================ */
-    .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-    .evidence-card { background: white; border: 1px solid var(--border); border-radius: 23px; padding: clamp(23px,3vw,35px); }
-    .evidence-card h3 { font: 600 1.55rem/1.23 Georgia, serif; margin: 13px 0 12px; }
-    .evidence-card p { color: var(--muted); margin: 0 0 13px; }
-    .evidence-card ul { padding-left: 19px; margin: 0; color: #365c57; font-size: .92rem; }
-    .evidence-card li { margin: 7px 0; }
-    .evidence-card--pending { background: #fff8ed; border-color: #f0dfc6; }
+    .section--anatomy { background: #f6f2e9; }
+    .anatomy-layout { display: grid; grid-template-columns: minmax(0,1.08fr) minmax(0,.92fr); gap: clamp(24px,4.5vw,58px); align-items: stretch; }
+    .anatomy-media { min-height: 480px; position: relative; overflow: hidden; border-radius: 28px; background: #dfe5d8; box-shadow: var(--shadow); }
+    .anatomy-media img { width: 100%; height: 100%; position: absolute; inset: 0; object-fit: cover; object-position: center 58%; transition: opacity .24s ease, transform .6s ease; }
+    .anatomy-photo-tag { position: absolute; bottom: 20px; left: 20px; color: white; background: #052d36d9; border: 1px solid #ffffff50; border-radius: 99px; padding: 9px 15px; font-size: .72rem; font-weight: 800; letter-spacing: .08em; }
+    .anatomy-content { min-width: 0; padding: clamp(16px,2vw,30px) 0; display: flex; flex-direction: column; justify-content: center; }
+    .anatomy-intro { font: 500 clamp(1.23rem,2.15vw,1.7rem)/1.45 Georgia,serif; color: var(--deep); margin-bottom: 26px; }
+    .anatomy-tabs { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 8px; border-bottom: 1px solid #cbd8cd; padding-bottom: 14px; }
+    .anatomy-tabs button { color: #5f7971; background: #fff9; border: 1px solid #d6e0d6; border-radius: 14px; min-width: 0; min-height: 64px; padding: 11px 8px; font-size: .76rem; font-weight: 850; }
+    .anatomy-tabs button span { display: block; font-weight: 700; font-size: .84rem; line-height: 1.25; }
+    .anatomy-tabs button[aria-selected="true"] { border-color: var(--deep); background: var(--deep); color: white; box-shadow: 0 8px 20px #092b3522; }
+    .anatomy-detail { padding: 25px 2px 16px; min-height: 190px; }
+    .anatomy-index { color: var(--teal); font-weight: 900; font-size: .73rem; letter-spacing: .14em; }
+    .anatomy-detail h3 { font: 600 clamp(1.65rem,2.55vw,2.3rem)/1.2 Georgia,serif; letter-spacing: -.03em; margin: 13px 0 10px; }
+    .anatomy-detail p { color: var(--muted); line-height: 1.75; margin: 0; }
+    .anatomy-foot { font-size: .77rem; text-transform: uppercase; letter-spacing: .15em; font-weight: 900; color: #5c8880; border-top: 1px solid #cbd8cd; padding-top: 19px; }
     .process-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(24px,5vw,65px); align-items: center; }
     .process-copy p { color: var(--muted); }
     .steps { padding: 0; list-style: none; margin: 24px 0 0; }
@@ -240,6 +249,9 @@
       .tour-panel small { margin-top: 0; }
       .tour-picker { margin-top: 0; }
       .process-grid { grid-template-columns: 1fr; }
+      .anatomy-layout { grid-template-columns: 1fr; }
+      .anatomy-media { min-height: 400px; }
+      .anatomy-content { padding: 8px 0; }
       .process-media { max-width: 740px; }
     }
     /* ============================================================
@@ -262,8 +274,11 @@
       .stats-grid { padding: 15px 0; }
       .stat small { font-size: .61rem; }
       .stat b { font-size: .81rem; }
-      .story-grid, .evidence-grid { grid-template-columns: 1fr; }
+      .story-grid, .anatomy-layout { grid-template-columns: 1fr; }
       .feature-grid, .gallery-grid, .team-grid { grid-template-columns: 1fr; }
+      .anatomy-media { min-height: 345px; }
+      .anatomy-tabs button { font-size: .72rem; }
+      .anatomy-tabs button span { font-size: .77rem; }
       .feature { display: grid; grid-template-columns: 42% minmax(0,1fr); }
       .feature img { width: 100%; height: 100%; aspect-ratio: auto; min-height: 205px; }
       .feature-body { padding: 18px; align-self: center; }
@@ -310,7 +325,7 @@
         <span class="brand-logo" aria-hidden="true">✳</span>
         <span><span class="brand-title">Miniature Tropical Forest</span><span class="brand-small">MT1 · TERRARIUM 2026</span></span>
       </a>
-      <nav class="nav" id="nav" aria-label="Navigasi utama">
+      <nav class="nav" id="nav" aria-label="Navigasi utama" data-aria-t="ariaNav">
         <a href="#about" data-t="navAbout">Pengenalan</a>
         <a href="#concept" data-t="navConcept">Konsep</a>
         <a href="#explore" data-t="navExplore">Terokai</a>
@@ -337,13 +352,13 @@
           <p data-t="heroCopy">Satu bekas kaca, satu dunia imaginasi. Landskap hijau dipadukan dengan rumah nanas, rumah batu, laluan kerikil dan karakter mini yang ceria.</p>
           <div class="button-row">
             <a href="#explore" class="btn btn--gold" data-t="heroButton1">Terokai terrarium ↗</a>
-            <a href="#gallery" class="btn btn--outline" data-t="heroButton2">Lihat 8 foto sebenar</a>
+            <a href="#gallery" class="btn btn--outline" data-t="heroButton2">Lihat galeri</a>
           </div>
         </div>
         <div class="hero-photo-wrap">
-          <div class="hero-photo"><img id="hero-front" src="assets/terrarium-hadapan.jpeg" alt="Foto hadapan terrarium MT1 dalam bekas kaca dengan rumah batu, rumah nanas, batu kerikil dan hiasan hijau" fetchpriority="high"><span class="hero-photo-tag" data-t="heroPhotoTag">FOTO SEBENAR · HASIL AKHIR</span></div>
-          <div class="hero-photo-secondary"><img src="assets/terrarium-sudut-kedua.jpeg" alt="Terrarium MT1 dari sudut sisi" loading="lazy"></div>
-          <div class="hero-float" data-t="heroFloat">✦ 8 foto + 1 video asli</div>
+          <div class="hero-photo"><img id="hero-front" src="assets/terrarium-hadapan.jpeg" data-alt-t="altFront" alt="Pandangan hadapan terrarium MT1" fetchpriority="high"><span class="hero-photo-tag" data-t="heroPhotoTag">LANDSKAP MINI · MT1</span></div>
+          <div class="hero-photo-secondary"><img src="assets/terrarium-sudut-kedua.jpeg" data-alt-t="altSide" alt="Pandangan sisi terrarium MT1" loading="lazy"></div>
+          <div class="hero-float" data-t="heroFloat">✦ Dunia kecil, idea besar</div>
         </div>
       </div>
     </section>
@@ -351,7 +366,7 @@
       <div class="wrap stats-grid">
         <div class="stat"><small data-t="statClass">Kelas</small><b>MT1</b></div>
         <div class="stat"><small data-t="statTheme">Konsep</small><b data-t="statThemeValue">Hutan mini × fantasi</b></div>
-        <div class="stat"><small data-t="statArchive">Dokumentasi</small><b>2026 · 8 + 1</b></div>
+        <div class="stat"><small data-t="statArchive">Dokumentasi</small><b data-t="statArchiveValue">2026 · MT1</b></div>
       </div>
     </div>
 
@@ -362,7 +377,7 @@
           <h2 class="heading" data-t="aboutTitle">Hutan mini dengan sentuhan dunia fantasi.</h2>
           <p data-t="aboutP1">Miniature Tropical Forest ialah hasil kerja kelas MT1 yang menampilkan susunan hijauan, kerikil, lapisan medium dan miniatur hiasan dalam sebuah bekas kaca.</p>
           <p data-t="aboutP2">Dua rumah mini menjadi tarikan utama: rumah nanas berwarna jingga dan struktur kebiruan menyerupai batu. Watak kecil dan laluan kerikil menjadikan keseluruhan landskap lebih hidup.</p>
-          <p data-t="aboutP3">Website ini menggunakan lapan foto dan satu video sebenar daripada dokumentasi projek. Butiran seperti spesies tumbuhan dan sumber bahan belum disahkan.</p>
+          <p data-t="aboutP3">Setiap sudut disusun untuk membentuk pengalaman visual yang menggabungkan tekstur semula jadi, warna ceria dan unsur imaginasi.</p>
         </div>
         <aside class="story-quote">
           <span class="overline" data-t="storyQuoteTag">CERITA DI SEBALIK LANDSKAP</span>
@@ -375,7 +390,7 @@
       <div class="wrap">
         <div class="eyebrow" data-t="conceptEyebrow">02 / KONSEP REKA BENTUK</div>
         <h2 class="heading" data-t="conceptTitle">Empat elemen, satu dunia mini.</h2>
-        <p class="lead" data-t="conceptLead">Setiap elemen di bawah mempunyai foto close-up sebenar daripada ZIP. Ketik gambar dalam galeri untuk melihat saiz penuh.</p>
+        <p class="lead" data-t="conceptLead">Empat perincian utama memberi identiti tersendiri kepada landskap ini, daripada rumah mini yang berwarna-warni hingga susunan batu dan hijauan.</p>
         <div class="feature-grid" id="features"></div>
       </div>
     </section>
@@ -387,44 +402,50 @@
         <p class="lead" data-t="exploreLead">Tekan penanda bernombor pada gambar untuk melihat foto dekat dan penerangan komponen tersebut.</p>
         <div class="explore-grid">
           <div>
-            <div class="tour-photo" aria-label="Penjelajah gambar terrarium hadapan">
-              <img src="assets/terrarium-hadapan.jpeg" alt="Pandangan keseluruhan terrarium dengan empat titik bernombor" loading="lazy">
+            <div class="tour-photo" aria-label="Paparan interaktif terrarium" data-aria-t="ariaExplorer">
+              <img src="assets/terrarium-hadapan.jpeg" data-alt-t="altExplore" alt="Pandangan terrarium dengan empat penanda" loading="lazy">
               <button class="hotspot" data-target="stone" type="button" aria-pressed="false" aria-label="1: Rumah batu">1</button>
               <button class="hotspot" data-target="pineapple" type="button" aria-pressed="true" aria-label="2: Rumah nanas">2</button>
               <button class="hotspot" data-target="path" type="button" aria-pressed="false" aria-label="3: Laluan batu">3</button>
               <button class="hotspot" data-target="green" type="button" aria-pressed="false" aria-label="4: Hijauan dan medium">4</button>
             </div>
-            <div class="tour-caption"><span data-t="tourHint">Titik 1–4 menandakan lokasi anggaran berdasarkan foto.</span><span data-t="tourClick">Boleh disentuh pada telefon ✓</span></div>
+            <div class="tour-caption"><span data-t="tourHint">Pilih penanda 1 hingga 4 untuk melihat perinciannya.</span><span data-t="tourClick">Empat elemen untuk diterokai</span></div>
           </div>
           <div class="tour-panel" aria-live="polite">
             <img id="tour-image" src="assets/rumah-nanas.jpeg" alt="Rumah nanas" loading="lazy">
             <small id="tour-index">TITIK 02 / 04</small>
             <h3 id="tour-title">Rumah nanas</h3>
             <p id="tour-description">Rumah nanas jingga menambahkan warna terang sebagai fokus landskap.</p>
-            <div class="tour-picker" id="tour-picker" aria-label="Pilih bahagian untuk diterokai"></div>
+            <div class="tour-picker" id="tour-picker" aria-label="Pilih elemen" data-aria-t="ariaTourPick"></div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="materials">
+    <section class="section section--anatomy" id="materials">
       <div class="wrap">
-        <div class="eyebrow" data-t="materialsEyebrow">04 / TUMBUHAN, BAHAN & KELESTARIAN</div>
-        <h2 class="heading" data-t="materialsTitle">Apa yang dapat dilihat, apa yang perlu disahkan.</h2>
-        <p class="lead" data-t="materialsLead">Maklumat ini berasaskan foto sebenar, bukan andaian tentang bahan atau spesies tertentu.</p>
-        <div class="evidence-grid">
-          <article class="evidence-card">
-            <span class="chip" data-t="evidenceSeen">✓ Terlihat dalam dokumentasi</span>
-            <h3 data-t="seenTitle">Komponen yang jelas kelihatan</h3>
-            <p data-t="seenText">Foto menunjukkan gabungan bahan asas dan hiasan yang membentuk landskap terrarium.</p>
-            <ul id="seen-list"></ul>
-          </article>
-          <article class="evidence-card evidence-card--pending">
-            <span class="chip" style="background:#ffe6c8;color:#925b22" data-t="evidencePending">◌ Menunggu pengesahan</span>
-            <h3 data-t="pendingTitle">Maklumat yang belum dapat dipastikan</h3>
-            <p data-t="pendingText">Semak perkara berikut dengan kumpulan berkaitan sebelum dinyatakan sebagai fakta kelestarian.</p>
-            <ul id="pending-list"></ul>
-          </article>
+        <div class="eyebrow" data-t="materialsEyebrow">04 / ANATOMI LANDSKAP</div>
+        <h2 class="heading" data-t="materialsTitle">Keindahan terletak pada perincian.</h2>
+        <p class="lead" data-t="materialsLead">Daripada tekstur kerikil di hadapan hingga hijauan di bahagian belakang, setiap lapisan membantu membentuk pemandangan hutan mini.</p>
+        <div class="anatomy-layout">
+          <div class="anatomy-media">
+            <img id="anatomy-image" src="assets/laluan-batu.jpeg" alt="Kerikil dan laluan kecil di hadapan terrarium" loading="lazy">
+            <div class="anatomy-photo-tag" data-t="anatomyTag">TELITI SUSUNANNYA</div>
+          </div>
+          <div class="anatomy-content">
+            <div class="anatomy-intro" data-t="anatomyIntro">Lihat bagaimana ruang yang kecil boleh mempunyai kedalaman, tekstur dan karakter.</div>
+            <div class="anatomy-tabs" id="anatomy-tabs" role="tablist" aria-label="Pilih bahagian landskap" data-aria-t="anatomyTabsLabel">
+              <button type="button" id="layer-tab-front" role="tab" aria-selected="true" aria-controls="layer-panel" tabindex="0" data-layer="front">01 <span data-t="layerFront">Hadapan</span></button>
+              <button type="button" id="layer-tab-middle" role="tab" aria-selected="false" aria-controls="layer-panel" tabindex="-1" data-layer="middle">02 <span data-t="layerMiddle">Tengah</span></button>
+              <button type="button" id="layer-tab-back" role="tab" aria-selected="false" aria-controls="layer-panel" tabindex="-1" data-layer="back">03 <span data-t="layerBack">Belakang</span></button>
+            </div>
+            <div class="anatomy-detail" id="layer-panel" role="tabpanel" aria-labelledby="layer-tab-front" tabindex="0" aria-live="polite">
+              <span class="anatomy-index" id="anatomy-index">01 / 03</span>
+              <h3 id="anatomy-title">Tekstur permukaan</h3>
+              <p id="anatomy-description">Batu kecil dan kerikil membentuk laluan yang memandu pandangan ke arah rumah mini.</p>
+            </div>
+            <div class="anatomy-foot" data-t="anatomyFoot">Tekstur · Warna · Komposisi</div>
+          </div>
         </div>
       </div>
     </section>
@@ -436,19 +457,19 @@
           <h2 class="heading" data-t="processTitle">Daripada bahan kepada hasil akhir.</h2>
           <p class="lead" data-t="processLead">Satu video pendek dan beberapa foto mendokumentasikan persediaan, kerjasama dan hasil terrarium.</p>
           <ol class="steps" id="process-steps"></ol>
-          <p style="font-size:.81rem" data-t="processCaveat">Video memperlihatkan aktiviti pengumpulan bahan berbatu di luar, bukan keseluruhan proses pemasangan di dalam bekas kaca.</p>
+          
         </div>
         <div class="process-media">
           <div class="video-card">
-            <video id="construction-video" controls playsinline preload="metadata" poster="assets/proses-poster.jpg" aria-label="Rakaman ringkas pengumpulan bahan untuk projek terrarium MT1">
+            <video id="construction-video" controls playsinline preload="metadata" poster="assets/proses-poster.jpg" aria-label="Rakaman persediaan projek terrarium MT1" data-aria-t="ariaVideo">
               <source src="assets/proses-bina.mp4" type="video/mp4">
-              Your browser does not support HTML video.
+              Maaf, pelayar anda tidak menyokong video ini.
             </video>
-            <div class="video-caption" data-t="videoCaption">▶ Video sebenar · 9.4 saat · rakaman menegak</div>
+            <div class="video-caption" data-t="videoCaption">▶ Detik persediaan projek</div>
           </div>
           <div class="process-side">
-            <figure><img src="assets/bahan-sebelum.jpeg" alt="Foto bahan yang dikumpulkan sebelum kerja pembinaan" loading="lazy"><figcaption data-t="materialsPhotoLabel">Persediaan bahan</figcaption></figure>
-            <figure><img src="assets/ahli-bekerja.jpeg" alt="Foto ahli projek MT1 bersama semasa aktiviti" loading="lazy"><figcaption data-t="peoplePhotoLabel">Kerjasama pasukan</figcaption></figure>
+            <figure><img src="assets/bahan-sebelum.jpeg" data-alt-t="altMaterials" alt="Bahan-bahan projek" loading="lazy"><figcaption data-t="materialsPhotoLabel">Persediaan bahan</figcaption></figure>
+            <figure><img src="assets/ahli-bekerja.jpeg" data-alt-t="altTeam" alt="Ahli projek MT1" loading="lazy"><figcaption data-t="peoplePhotoLabel">Kerjasama pasukan</figcaption></figure>
           </div>
         </div>
       </div>
@@ -459,8 +480,8 @@
         <div class="eyebrow" data-t="galleryEyebrow">06 / GALERI DOKUMENTASI</div>
         <h2 class="heading" data-t="galleryTitle">Lapan foto. Cerita yang lengkap.</h2>
         <div class="gallery-top">
-          <p class="lead" data-t="galleryLead">Semua foto yang Aqil sertakan dalam ZIP telah dimasukkan. Gunakan penapis dan ketik foto untuk paparan penuh.</p>
-          <div class="filters" id="filters" role="group" aria-label="Tapis galeri"></div>
+          <p class="lead" data-t="galleryLead">Saksikan hasil akhir, perincian reka bentuk dan suasana di sebalik pembinaan terrarium ini.</p>
+          <div class="filters" id="filters" role="group" aria-label="Tapis galeri" data-aria-t="ariaFilters"></div>
         </div>
         <div id="gallery-grid" class="gallery-grid"></div>
       </div>
@@ -470,20 +491,19 @@
       <div class="wrap">
         <div class="eyebrow" data-t="teamEyebrow">07 / PASUKAN PROJEK</div>
         <h2 class="heading" data-t="teamTitle">Empat kumpulan. Satu hasil bersama.</h2>
-        <p class="lead" data-t="teamLead">Peranan rasmi empat kumpulan dikekalkan. Nama ahli boleh ditambah dalam SITE_DATA selepas disahkan dan mendapat persetujuan untuk dipaparkan.</p>
+        <p class="lead" data-t="teamLead">Empat bidang tumpuan saling melengkapi dalam menghidupkan idea Miniature Tropical Forest.</p>
         <div class="team-grid" id="team-grid"></div>
-        <p class="team-note" data-t="teamNote">Gambar ahli telah dimasukkan dalam bahagian Proses dan Galeri. Pastikan semua individu bersetuju sebelum website diterbitkan kepada umum.</p>
       </div>
     </section>
   </main>
   <footer class="footer">
     <div class="wrap footer-inner">
-      <div><div class="footer-title">Miniature Tropical Forest ✳</div><p data-t="footerCopy">Dokumentasi projek MT1 · Pameran 2–19 November 2026</p></div>
+      <div><div class="footer-title">Miniature Tropical Forest ✳</div><p data-t="footerCopy">Projek terrarium kelas MT1 · 2026</p></div>
       <a href="#home" class="back-top" data-t="backTop">Kembali ke atas ↑</a>
     </div>
   </footer>
 
-  <dialog class="photo-dialog" id="photo-dialog" aria-label="Paparan foto penuh">
+  <dialog class="photo-dialog" id="photo-dialog" aria-label="Paparan foto penuh" data-aria-t="ariaDialog">
     <button class="dialog-close" id="dialog-close" aria-label="Tutup gambar">×</button>
     <div class="dialog-layout">
       <img class="dialog-image" id="dialog-image" alt="">
@@ -492,82 +512,484 @@
   </dialog>
 
   <script>
-    /* ============================================================
-       SITE_DATA — UBAH MAKLUMAT, GAMBAR DAN NAMA AHLI DI SINI
-       Gambar asal dalam folder assets/; tiada URL Google Drive diperlukan.
-       Gambar/video dalam senarai ini memang terdapat dalam ZIP pengguna.
-       ============================================================ */
+    // Semua kandungan untuk pengunjung disimpan berasingan daripada arahan penyuntingan.
     const SITE_DATA = {
-      project: 'Miniature Tropical Forest',
-      className: 'MT1',
-      exhibition: '2–19 November 2026',
-      media: {
-        front: 'assets/terrarium-hadapan.jpeg',
-        side: 'assets/terrarium-sudut-kedua.jpeg',
-        pineapple: 'assets/rumah-nanas.jpeg',
-        stone: 'assets/rumah-batu.jpeg',
-        pathway: 'assets/laluan-batu.jpeg',
-        greenery: 'assets/hijauan-medium.jpeg',
-        materials: 'assets/bahan-sebelum.jpeg',
-        team: 'assets/ahli-bekerja.jpeg',
-        video: 'assets/proses-bina.mp4',
-        videoPoster: 'assets/proses-poster.jpg'
+  "project": "Miniature Tropical Forest",
+  "features": [
+    {
+      "id": "pineapple",
+      "number": "01",
+      "image": "assets/rumah-nanas.jpeg",
+      "title": {
+        "ms": "Rumah nanas",
+        "en": "Pineapple house"
       },
-      features: [
-        { id:'pineapple', number:'01', image:'assets/rumah-nanas.jpeg', title:{ms:'Rumah nanas',en:'Pineapple house'}, description:{ms:'Struktur mini jingga dengan pintu dan tingkap bulat menjadi tumpuan warna dalam landskap.',en:'A bright orange miniature structure with a rounded door and windows adds a focal point.'} },
-        { id:'stone', number:'02', image:'assets/rumah-batu.jpeg', title:{ms:'Rumah batu',en:'Stone house'}, description:{ms:'Struktur mini kebiruan dengan bentuk wajah tersendiri menyerlah di bahagian kiri terrarium.',en:'A distinctive blue-green miniature structure stands out on the left of the terrarium.'} },
-        { id:'path', number:'03', image:'assets/laluan-batu.jpeg', title:{ms:'Laluan kerikil',en:'Pebble pathway'}, description:{ms:'Batu-batu kecil membentuk laluan di antara rumah mini dan karakter hiasan.',en:'Small pebbles create a path connecting the houses and decorative miniatures.'} },
-        { id:'green', number:'04', image:'assets/hijauan-medium.jpeg', title:{ms:'Hijauan & medium',en:'Greenery & substrate'}, description:{ms:'Susunan hiasan hijau dan lapisan medium gelap membentuk latar landskap mini.',en:'Green foliage-like decorations and dark substrate form the miniature landscape background.'} }
-      ],
-      gallery: [
-        {id:'front',src:'assets/terrarium-hadapan.jpeg',kind:'final',title:{ms:'Pandangan hadapan',en:'Front view'},alt:{ms:'Pandangan hadapan terrarium MT1 dalam bekas kaca',en:'Front view of the MT1 terrarium in a glass tank'}},
-        {id:'side',src:'assets/terrarium-sudut-kedua.jpeg',kind:'final',title:{ms:'Pandangan sisi',en:'Side view'},alt:{ms:'Pandangan terrarium MT1 dari sudut kedua',en:'Second angle of the MT1 terrarium'}},
-        {id:'pineapple',src:'assets/rumah-nanas.jpeg',kind:'detail',title:{ms:'Rumah nanas',en:'Pineapple house'},alt:{ms:'Foto dekat rumah nanas jingga',en:'Close-up of orange pineapple house'}},
-        {id:'stone',src:'assets/rumah-batu.jpeg',kind:'detail',title:{ms:'Rumah batu',en:'Stone house'},alt:{ms:'Foto dekat rumah batu kebiruan',en:'Close-up of blue-green stone house'}},
-        {id:'path',src:'assets/laluan-batu.jpeg',kind:'detail',title:{ms:'Laluan batu',en:'Pebble pathway'},alt:{ms:'Foto dekat susunan laluan kerikil dan hiasan mini',en:'Close-up of pebble path and miniatures'}},
-        {id:'green',src:'assets/hijauan-medium.jpeg',kind:'detail',title:{ms:'Hijauan & medium',en:'Greenery & substrate'},alt:{ms:'Foto dekat hiasan hijau dan medium',en:'Close-up of foliage-like decorations and substrate'}},
-        {id:'materials',src:'assets/bahan-sebelum.jpeg',kind:'process',title:{ms:'Bahan sebelum pembinaan',en:'Materials before assembly'},alt:{ms:'Foto bahan sebelum kerja pembinaan',en:'Photo of materials before assembly'}},
-        {id:'team',src:'assets/ahli-bekerja.jpeg',kind:'process',title:{ms:'Ahli projek MT1',en:'MT1 project members'},alt:{ms:'Foto ahli yang terlibat dalam projek',en:'Photo of people involved in the project'}}
-      ],
-      // Isi nama sebenar hanya selepas disahkan dan mendapat persetujuan.
-      teams: [
-        {number:1,role:'Design, Planning & Base Preparation',leader:'',members:[]},
-        {number:2,role:'Hardscape & Structure',leader:'',members:[]},
-        {number:3,role:'Plants, Ecosystem & Maintenance',leader:'',members:[]},
-        {number:4,role:'Website, Label & Documentation',leader:'',members:[]}
-      ]
-    };
+      "description": {
+        "ms": "Rumah mini berwarna jingga menjadi titik tumpu yang ceria di tengah-tengah lanskap.",
+        "en": "The vibrant orange miniature house creates a playful focal point within the scene."
+      }
+    },
+    {
+      "id": "stone",
+      "number": "02",
+      "image": "assets/rumah-batu.jpeg",
+      "title": {
+        "ms": "Rumah batu",
+        "en": "Stone house"
+      },
+      "description": {
+        "ms": "Rumah mini berwarna biru kehijauan memberikan kontras menarik di antara batu dan hijauan.",
+        "en": "A blue-green miniature house adds contrast among the stones and foliage."
+      }
+    },
+    {
+      "id": "path",
+      "number": "03",
+      "image": "assets/laluan-batu.jpeg",
+      "title": {
+        "ms": "Laluan kerikil",
+        "en": "Pebble pathway"
+      },
+      "description": {
+        "ms": "Susunan kerikil membentuk laluan kecil dan menambah tekstur pada permukaan terrarium.",
+        "en": "Carefully arranged pebbles create a small pathway and enrich the surface texture."
+      }
+    },
+    {
+      "id": "green",
+      "number": "04",
+      "image": "assets/hijauan-medium.jpeg",
+      "title": {
+        "ms": "Hijauan & medium",
+        "en": "Greenery & substrate"
+      },
+      "description": {
+        "ms": "Gabungan hijauan dan medium berwarna gelap menyerlahkan suasana hutan mini.",
+        "en": "Green foliage and dark substrate enhance the miniature forest atmosphere."
+      }
+    }
+  ],
+  "layers": [
+    {
+      "id": "front",
+      "number": "01",
+      "image": "assets/laluan-batu.jpeg",
+      "title": {
+        "ms": "Tekstur permukaan",
+        "en": "Surface textures"
+      },
+      "description": {
+        "ms": "Kerikil dan batu kecil membentuk laluan di bahagian hadapan, menambah kedalaman serta arah pandangan ke dalam landskap.",
+        "en": "Pebbles and small stones form a foreground pathway, adding depth and guiding the eye into the scene."
+      },
+      "alt": {
+        "ms": "Laluan batu dan kerikil di hadapan terrarium",
+        "en": "Pebble pathway in the foreground of the terrarium"
+      }
+    },
+    {
+      "id": "middle",
+      "number": "02",
+      "image": "assets/rumah-nanas.jpeg",
+      "title": {
+        "ms": "Tumpuan di bahagian tengah",
+        "en": "A central focal point"
+      },
+      "description": {
+        "ms": "Rumah nanas yang terang dan rumah biru kehijauan menonjol sebagai elemen utama, ditemani karakter hiasan kecil.",
+        "en": "The bright pineapple house and blue-green house act as focal points, accompanied by small decorative characters."
+      },
+      "alt": {
+        "ms": "Rumah nanas jingga di tengah landskap mini",
+        "en": "Orange pineapple house in the miniature scene"
+      }
+    },
+    {
+      "id": "back",
+      "number": "03",
+      "image": "assets/hijauan-medium.jpeg",
+      "title": {
+        "ms": "Latar hijau yang subur",
+        "en": "A lush green backdrop"
+      },
+      "description": {
+        "ms": "Susunan hijauan pada bahagian belakang membingkaikan rumah mini dan melengkapkan suasana seperti hutan tropika.",
+        "en": "Greenery at the back frames the miniature houses and completes the tropical forest atmosphere."
+      },
+      "alt": {
+        "ms": "Hijauan pada bahagian belakang terrarium",
+        "en": "Green foliage at the back of the terrarium"
+      }
+    }
+  ],
+  "gallery": [
+    {
+      "id": "front",
+      "src": "assets/terrarium-hadapan.jpeg",
+      "kind": "final",
+      "title": {
+        "ms": "Pandangan hadapan",
+        "en": "Front view"
+      },
+      "alt": {
+        "ms": "Pandangan keseluruhan terrarium dari hadapan",
+        "en": "Full front view of the terrarium"
+      }
+    },
+    {
+      "id": "side",
+      "src": "assets/terrarium-sudut-kedua.jpeg",
+      "kind": "final",
+      "title": {
+        "ms": "Pandangan sudut",
+        "en": "Angled view"
+      },
+      "alt": {
+        "ms": "Terrarium dilihat dari sudut sisi",
+        "en": "Terrarium viewed from the side"
+      }
+    },
+    {
+      "id": "pineapple",
+      "src": "assets/rumah-nanas.jpeg",
+      "kind": "detail",
+      "title": {
+        "ms": "Rumah nanas",
+        "en": "Pineapple house"
+      },
+      "alt": {
+        "ms": "Pandangan dekat rumah nanas jingga",
+        "en": "Close-up of the orange pineapple house"
+      }
+    },
+    {
+      "id": "stone",
+      "src": "assets/rumah-batu.jpeg",
+      "kind": "detail",
+      "title": {
+        "ms": "Rumah batu",
+        "en": "Stone house"
+      },
+      "alt": {
+        "ms": "Pandangan dekat rumah mini biru kehijauan",
+        "en": "Close-up of the blue-green miniature house"
+      }
+    },
+    {
+      "id": "path",
+      "src": "assets/laluan-batu.jpeg",
+      "kind": "detail",
+      "title": {
+        "ms": "Laluan kerikil",
+        "en": "Pebble pathway"
+      },
+      "alt": {
+        "ms": "Laluan kerikil dan hiasan kecil",
+        "en": "Pebble pathway and small decorations"
+      }
+    },
+    {
+      "id": "green",
+      "src": "assets/hijauan-medium.jpeg",
+      "kind": "detail",
+      "title": {
+        "ms": "Hijauan landskap",
+        "en": "Landscape greenery"
+      },
+      "alt": {
+        "ms": "Hijauan dan permukaan terrarium",
+        "en": "Greenery and surface of the terrarium"
+      }
+    },
+    {
+      "id": "materials",
+      "src": "assets/bahan-sebelum.jpeg",
+      "kind": "process",
+      "title": {
+        "ms": "Persediaan bahan",
+        "en": "Materials preparation"
+      },
+      "alt": {
+        "ms": "Bahan-bahan sebelum proses pembinaan",
+        "en": "Materials before the building activity"
+      }
+    },
+    {
+      "id": "team",
+      "src": "assets/ahli-bekerja.jpeg",
+      "kind": "process",
+      "title": {
+        "ms": "Kenangan bersama",
+        "en": "Team moments"
+      },
+      "alt": {
+        "ms": "Gambar berkumpulan ahli projek",
+        "en": "Group photo of project members"
+      }
+    }
+  ],
+  "teams": [
+    {
+      "number": 1,
+      "role": {
+        "ms": "Reka Bentuk & Perancangan",
+        "en": "Design & Planning"
+      },
+      "description": {
+        "ms": "Idea awal, susun atur dan konsep visual.",
+        "en": "Initial ideas, layout and visual direction."
+      },
+      "members": ["ADHHA NAIM BIN AZIZAN", "SYABIL ASYRAF BIN SYAZWAN", "NUR FITRI DAMIA BINTI MOHD FAZILAH", "KHAIRUNNISA MOHD NOR AZWAN", "NUR DAMIA BATRISYIA BINTI MOHD NAZRI"]
+    },
+    {
+      "number": 2,
+      "role": {
+        "ms": "Struktur & Laluan",
+        "en": "Structures & Pathways"
+      },
+      "description": {
+        "ms": "Komposisi rumah mini, batu dan laluan.",
+        "en": "Arranging miniature houses, stones and paths."
+      },
+      "members": ["MUHAMMAD ZIQREL AMZAR BIN MOHD OTHMAN", "LAVITHAREN SAMYTORAI", "SITI AISHAH BINTI MUHAMAD NIZAM", "FAM XIAO QI", "GRACE YONG JIA HWI"]
+    },
+    {
+      "number": 3,
+      "role": {
+        "ms": "Hijauan & Landskap",
+        "en": "Greenery & Landscape"
+      },
+      "description": {
+        "ms": "Sentuhan hijau dan kemasan landskap.",
+        "en": "Green elements and landscape finishing."
+      },
+      "members": ["AHMAD HAKIMI AQWA BIN RIZAL", "ADAM LAU EK HUANG", "CHU QI YAO", "SYAZWAN KHUMAINI BIN SA’ADON", "MUHAMMAD ARIF HARMAIN BIN ARIF AFIZUDDIN"]
+    },
+    {
+      "number": 4,
+      "role": {
+        "ms": "Dokumentasi & Digital",
+        "en": "Documentation & Digital"
+      },
+      "description": {
+        "ms": "Rakaman visual dan persembahan dalam talian.",
+        "en": "Visual documentation and online presentation."
+      },
+      "members": ["ABDUL HALIM BIN DAHLAN", "AQIL ZAFRAN BIN ZUL AZMIZAM", "NUR ATIKAH BINTI MUHAMMAD NORHISAN", "AQILAH HUSNA BINTI MOHD SAIFUL AZLIE", "NUR AREESHA ALIA BINTI MARWAN"]
+    }
+  ]
+};
 
     const UI = {
-      ms: {
-        skip:'Langkau ke kandungan',navAbout:'Pengenalan',navConcept:'Konsep',navExplore:'Terokai',navMaterials:'Bahan',navProcess:'Proses',navGallery:'Galeri',navTeam:'Pasukan',
-        heroEyebrow:'PAMERAN PROJEK · KELAS MT1',heroCopy:'Satu bekas kaca, satu dunia imaginasi. Landskap hijau dipadukan dengan rumah nanas, rumah batu, laluan kerikil dan karakter mini yang ceria.',heroButton1:'Terokai terrarium ↗',heroButton2:'Lihat 8 foto sebenar',heroPhotoTag:'FOTO SEBENAR · HASIL AKHIR',heroFloat:'✦ 8 foto + 1 video asli',
-        statClass:'Kelas',statTheme:'Konsep',statThemeValue:'Hutan mini × fantasi',statArchive:'Dokumentasi',
-        aboutEyebrow:'01 / PENGENALAN',aboutTitle:'Hutan mini dengan sentuhan dunia fantasi.',aboutP1:'Miniature Tropical Forest ialah hasil kerja kelas MT1 yang menampilkan susunan hijauan, kerikil, lapisan medium dan miniatur hiasan dalam sebuah bekas kaca.',aboutP2:'Dua rumah mini menjadi tarikan utama: rumah nanas berwarna jingga dan struktur kebiruan menyerupai batu. Watak kecil dan laluan kerikil menjadikan keseluruhan landskap lebih hidup.',aboutP3:'Website ini menggunakan lapan foto dan satu video sebenar daripada dokumentasi projek. Butiran seperti spesies tumbuhan dan sumber bahan belum disahkan.',storyQuoteTag:'CERITA DI SEBALIK LANDSKAP',storyQuote:'“Alam dan imaginasi bertemu dalam satu dunia kecil.”',
-        conceptEyebrow:'02 / KONSEP REKA BENTUK',conceptTitle:'Empat elemen, satu dunia mini.',conceptLead:'Setiap elemen di bawah mempunyai foto close-up sebenar daripada ZIP. Ketik gambar dalam galeri untuk melihat saiz penuh.',
-        exploreEyebrow:'03 / EKSPLORASI INTERAKTIF',exploreTitle:'Terokai setiap sudut terrarium.',exploreLead:'Tekan penanda bernombor pada gambar untuk melihat foto dekat dan penerangan komponen tersebut.',tourHint:'Titik 1–4 menandakan lokasi anggaran berdasarkan foto.',tourClick:'Boleh disentuh pada telefon ✓',tourIndex:'TITIK',
-        materialsEyebrow:'04 / TUMBUHAN, BAHAN & KELESTARIAN',materialsTitle:'Apa yang dapat dilihat, apa yang perlu disahkan.',materialsLead:'Maklumat ini berasaskan foto sebenar, bukan andaian tentang bahan atau spesies tertentu.',evidenceSeen:'✓ Terlihat dalam dokumentasi',seenTitle:'Komponen yang jelas kelihatan',seenText:'Foto menunjukkan gabungan bahan asas dan hiasan yang membentuk landskap terrarium.',evidencePending:'◌ Menunggu pengesahan',pendingTitle:'Maklumat yang belum dapat dipastikan',pendingText:'Semak perkara berikut dengan kumpulan berkaitan sebelum dinyatakan sebagai fakta kelestarian.',seenItems:['Bekas kaca berbentuk segi empat','Medium berbutir berwarna gelap','Batu dan kerikil pada laluan serta bahagian tepi','Hiasan hijau dan rumah mini dengan karakter kecil'],pendingItems:['Nama spesies tumbuhan, jika ada tumbuhan hidup','Komposisi dan sumber medium tanaman','Bahan yang benar-benar dikitar semula atau diguna semula','Kaedah penjagaan dan penyiraman yang diamalkan'],
-        processEyebrow:'05 / DI SEBALIK TABIR',processTitle:'Daripada bahan kepada hasil akhir.',processLead:'Satu video pendek dan beberapa foto mendokumentasikan persediaan, kerjasama dan hasil terrarium.',processCaveat:'Video memperlihatkan aktiviti pengumpulan bahan berbatu di luar, bukan keseluruhan proses pemasangan di dalam bekas kaca.',videoCaption:'▶ Video sebenar · 9.4 saat · rakaman menegak',materialsPhotoLabel:'Persediaan bahan',peoplePhotoLabel:'Kerjasama pasukan',steps:[{title:'Pengumpulan bahan',desc:'Video menunjukkan beberapa ahli mengumpulkan batu/kerikil.'},{title:'Bahan & kerjasama',desc:'Foto menunjukkan bahan yang disediakan dan ahli projek.'},{title:'Hasil akhir',desc:'Pandangan hadapan serta sisi terrarium yang siap.'}],
-        galleryEyebrow:'06 / GALERI DOKUMENTASI',galleryTitle:'Lapan foto. Cerita yang lengkap.',galleryLead:'Semua foto yang disertakan dalam ZIP telah dimasukkan. Gunakan penapis dan ketik foto untuk paparan penuh.',all:'Semua (8)',final:'Hasil akhir (2)',detail:'Close-up (4)',process:'Proses & ahli (2)',zoom:'Lihat gambar penuh',
-        teamEyebrow:'07 / PASUKAN PROJEK',teamTitle:'Empat kumpulan. Satu hasil bersama.',teamLead:'Peranan rasmi empat kumpulan dikekalkan. Nama ahli boleh ditambah dalam SITE_DATA selepas disahkan dan mendapat persetujuan untuk dipaparkan.',teamNote:'Gambar ahli telah dimasukkan dalam bahagian Proses dan Galeri. Pastikan semua individu bersetuju sebelum website diterbitkan kepada umum.',group:'KUMPULAN',leader:'Ketua',membersPending:'Nama ahli belum dimasukkan',
-        footerCopy:'Dokumentasi projek MT1 · Pameran 2–19 November 2026',backTop:'Kembali ke atas ↑',menuOpen:'Buka menu',menuClose:'Tutup menu',closePhoto:'Tutup gambar',prevPhoto:'Gambar sebelumnya',nextPhoto:'Gambar seterusnya',kindFinal:'Hasil akhir',kindDetail:'Close-up',kindProcess:'Proses & pasukan'
+  "ms": {
+    "skip": "Langkau ke kandungan",
+    "navAbout": "Pengenalan",
+    "navConcept": "Konsep",
+    "navExplore": "Terokai",
+    "navMaterials": "Landskap",
+    "navProcess": "Proses",
+    "navGallery": "Galeri",
+    "navTeam": "Pasukan",
+    "heroEyebrow": "PAMERAN KREATIF · KELAS MT1",
+    "heroCopy": "Sebuah dunia mini dalam bekas kaca. Terokai gabungan hijauan, laluan kerikil, rumah kecil berwarna-warni dan sentuhan imaginasi.",
+    "heroButton1": "Mula terokai ↗",
+    "heroButton2": "Lihat galeri",
+    "heroPhotoTag": "LANDSKAP MINI · MT1",
+    "heroFloat": "✦ Dunia kecil, idea besar",
+    "statClass": "Kelas",
+    "statTheme": "Inspirasi",
+    "statThemeValue": "Hutan tropika mini",
+    "statArchive": "Projek",
+    "statArchiveValue": "2026 · MT1",
+    "aboutEyebrow": "01 / PENGENALAN",
+    "aboutTitle": "Hutan mini dengan sentuhan fantasi.",
+    "aboutP1": "Miniature Tropical Forest ialah projek terrarium kelas MT1 yang menggabungkan unsur landskap hijau, batu kerikil dan hiasan miniatur dalam sebuah bekas kaca.",
+    "aboutP2": "Rumah nanas yang ceria dan rumah biru kehijauan menyerlah di tengah-tengah susunan batu, hijauan serta karakter mini yang mencuit hati.",
+    "aboutP3": "Setiap sudut disusun untuk membentuk pengalaman visual yang menggabungkan tekstur semula jadi, warna ceria dan unsur imaginasi.",
+    "storyQuoteTag": "IDEA DI SEBALIK REKA BENTUK",
+    "storyQuote": "“Alam dan imaginasi bertemu dalam satu dunia kecil.”",
+    "conceptEyebrow": "02 / KONSEP REKA BENTUK",
+    "conceptTitle": "Empat elemen, satu dunia mini.",
+    "conceptLead": "Empat perincian utama memberi identiti tersendiri kepada landskap ini, daripada rumah mini yang berwarna-warni hingga susunan batu dan hijauan.",
+    "exploreEyebrow": "03 / TEROKAI SECARA INTERAKTIF",
+    "exploreTitle": "Temui cerita di setiap sudut.",
+    "exploreLead": "Pilih penanda pada gambar untuk mengenali rumah mini, laluan kerikil dan hijauan yang membentuk landskap ini.",
+    "tourHint": "Pilih penanda 1 hingga 4 untuk melihat perinciannya.",
+    "tourClick": "Empat elemen untuk diterokai",
+    "tourIndex": "ELEMEN",
+    "materialsEyebrow": "04 / ANATOMI LANDSKAP",
+    "materialsTitle": "Keindahan terletak pada perincian.",
+    "materialsLead": "Daripada tekstur kerikil di hadapan hingga hijauan di bahagian belakang, setiap bahagian melengkapkan pemandangan hutan mini.",
+    "anatomyTag": "TELITI SUSUNANNYA",
+    "anatomyIntro": "Ruang kecil ini diperkaya dengan tekstur, warna dan kedalaman. Pilih bahagian untuk menerokainya.",
+    "anatomyTabsLabel": "Pilih bahagian landskap",
+    "layerFront": "Hadapan",
+    "layerMiddle": "Tengah",
+    "layerBack": "Belakang",
+    "anatomyFoot": "Tekstur · Warna · Komposisi",
+    "processEyebrow": "05 / DI SEBALIK TABIR",
+    "processTitle": "Daripada persediaan kepada hasil akhir.",
+    "processLead": "Lihat secebis perjalanan projek ini melalui rakaman persediaan bahan, momen kerjasama dan pemandangan terrarium yang siap.",
+    "videoCaption": "▶ Detik persediaan projek",
+    "materialsPhotoLabel": "Persediaan bahan",
+    "peoplePhotoLabel": "Kerjasama pasukan",
+    "steps": [
+      {
+        "title": "Persediaan awal",
+        "desc": "Bahan dan hiasan dikumpulkan sebagai permulaan projek."
       },
-      en: {
-        skip:'Skip to content',navAbout:'Introduction',navConcept:'Design',navExplore:'Explore',navMaterials:'Materials',navProcess:'Process',navGallery:'Gallery',navTeam:'Team',
-        heroEyebrow:'PROJECT EXHIBITION · CLASS MT1',heroCopy:'One glass tank, a world of imagination. Greenery meets a pineapple house, stone house, pebble paths and colourful miniature characters.',heroButton1:'Explore the terrarium ↗',heroButton2:'See 8 real photos',heroPhotoTag:'REAL PHOTO · COMPLETED PROJECT',heroFloat:'✦ 8 photos + 1 real video',
-        statClass:'Class',statTheme:'Concept',statThemeValue:'Mini forest × fantasy',statArchive:'Documentation',
-        aboutEyebrow:'01 / INTRODUCTION',aboutTitle:'A miniature forest with a touch of fantasy.',aboutP1:'Miniature Tropical Forest is a Class MT1 project featuring greenery, pebbles, layered substrate and decorative miniatures inside a glass tank.',aboutP2:'Two tiny houses are central to the scene: an orange pineapple house and a blue-green stone-like structure. Small figurines and the pebble path help bring the scene to life.',aboutP3:'This website uses eight actual photos and one real video from the project documentation. Plant species and material origins remain unverified.',storyQuoteTag:'THE STORY BEHIND THE LANDSCAPE',storyQuote:'“Nature and imagination meet in one tiny world.”',
-        conceptEyebrow:'02 / DESIGN CONCEPT',conceptTitle:'Four elements, one tiny world.',conceptLead:'Each element below has an actual close-up photo from the ZIP. Open the gallery to inspect images at full size.',
-        exploreEyebrow:'03 / INTERACTIVE EXPLORER',exploreTitle:'Explore every corner of the terrarium.',exploreLead:'Select a numbered marker to see a detail photo and learn more about that element.',tourHint:'Markers 1–4 show approximate locations in the photo.',tourClick:'Touch-friendly on phones ✓',tourIndex:'POINT',
-        materialsEyebrow:'04 / PLANTS, MATERIALS & SUSTAINABILITY',materialsTitle:'What we can see, and what needs checking.',materialsLead:'This information comes from the actual photographs rather than guesses about species or materials.',evidenceSeen:'✓ Visible in documentation',seenTitle:'Clearly visible components',seenText:'The photos show a combination of base materials and decorative elements.',evidencePending:'◌ Awaiting confirmation',pendingTitle:'Details not yet verified',pendingText:'Confirm the following with the relevant groups before claiming any sustainability practices.',seenItems:['Rectangular glass tank','Dark granular substrate','Stones and pebbles along the pathway and edges','Foliage-like decorations and miniature houses with figures'],pendingItems:['Plant species, if live plants were used','Composition and origin of the substrate','Materials actually recycled or reused','Care and watering practices used'],
-        processEyebrow:'05 / BEHIND THE SCENES',processTitle:'From materials to the final scene.',processLead:'A short video and several photos document preparation, teamwork and the finished terrarium.',processCaveat:'The video shows people collecting stony materials outdoors, not the entire assembly process inside the glass tank.',videoCaption:'▶ Real video · 9.4 seconds · portrait recording',materialsPhotoLabel:'Materials prepared',peoplePhotoLabel:'Team collaboration',steps:[{title:'Gathering materials',desc:'The video shows a few members collecting stones/pebbles.'},{title:'Materials and teamwork',desc:'Photos show prepared items and project members.'},{title:'Completed terrarium',desc:'Front and side views of the final display.'}],
-        galleryEyebrow:'06 / PHOTO DOCUMENTATION',galleryTitle:'Eight photos. One complete story.',galleryLead:'Every image from the ZIP is included. Filter the gallery and tap any photo to enlarge it.',all:'All (8)',final:'Final result (2)',detail:'Close-ups (4)',process:'Process & team (2)',zoom:'Open full-size photo',
-        teamEyebrow:'07 / PROJECT TEAM',teamTitle:'Four groups. One shared result.',teamLead:'The official four-group roles are retained. Member names can be added to SITE_DATA once confirmed and approved for public display.',teamNote:'A team photo appears in the Process and Gallery sections. Obtain consent from the people shown before publishing the website publicly.',group:'GROUP',leader:'Leader',membersPending:'Member names not added yet',
-        footerCopy:'MT1 Project Documentation · Exhibition 2–19 November 2026',backTop:'Back to top ↑',menuOpen:'Open menu',menuClose:'Close menu',closePhoto:'Close photo',prevPhoto:'Previous photo',nextPhoto:'Next photo',kindFinal:'Final result',kindDetail:'Close-up',kindProcess:'Process & team'
+      {
+        "title": "Kerjasama pasukan",
+        "desc": "Idea dan usaha ahli digabungkan dalam pelaksanaan projek."
+      },
+      {
+        "title": "Hasil dipamerkan",
+        "desc": "Landskap terrarium diperlihatkan dari beberapa sudut."
       }
-    };
+    ],
+    "galleryEyebrow": "06 / GALERI",
+    "galleryTitle": "Lihat dari dekat.",
+    "galleryLead": "Saksikan hasil akhir, perincian reka bentuk dan suasana di sebalik pembinaan terrarium ini.",
+    "all": "Semua",
+    "final": "Hasil akhir",
+    "detail": "Perincian",
+    "process": "Proses & ahli",
+    "zoom": "Besarkan foto",
+    "teamEyebrow": "07 / KERJASAMA PASUKAN",
+    "teamTitle": "Empat bidang, satu visi.",
+    "teamLead": "Empat bidang tumpuan saling melengkapi dalam menghidupkan idea Miniature Tropical Forest.",
+    "group": "KUMPULAN",
+    "backTop": "Kembali ke atas ↑",
+    "footerCopy": "Projek terrarium kelas MT1 · 2026",
+    "menuOpen": "Buka menu",
+    "menuClose": "Tutup menu",
+    "closePhoto": "Tutup gambar",
+    "prevPhoto": "Gambar sebelumnya",
+    "nextPhoto": "Gambar seterusnya",
+    "kindFinal": "Hasil akhir",
+    "kindDetail": "Perincian",
+    "kindProcess": "Proses & pasukan",
+    "ariaNav": "Navigasi utama",
+    "ariaExplorer": "Penerokaan interaktif terrarium",
+    "ariaTourPick": "Pilih elemen terrarium",
+    "ariaVideo": "Rakaman persediaan projek terrarium",
+    "ariaFilters": "Tapis gambar galeri",
+    "ariaDialog": "Paparan gambar penuh",
+    "altFront": "Pandangan hadapan terrarium MT1",
+    "altSide": "Pandangan sisi terrarium MT1",
+    "altExplore": "Pemandangan terrarium dengan penanda interaktif",
+    "altMaterials": "Bahan yang digunakan dalam projek",
+    "altTeam": "Foto berkumpulan ahli projek",
+    "pageTitle": "Miniature Tropical Forest | Terrarium MT1",
+    "pageDescription": "Jelajahi landskap terrarium Miniature Tropical Forest oleh kelas MT1."
+  },
+  "en": {
+    "skip": "Skip to content",
+    "navAbout": "Introduction",
+    "navConcept": "Concept",
+    "navExplore": "Explore",
+    "navMaterials": "Landscape",
+    "navProcess": "Process",
+    "navGallery": "Gallery",
+    "navTeam": "Team",
+    "heroEyebrow": "CREATIVE SHOWCASE · CLASS MT1",
+    "heroCopy": "A tiny world inside a glass tank. Discover greenery, pebble paths, colourful miniature houses and a touch of imagination.",
+    "heroButton1": "Start exploring ↗",
+    "heroButton2": "View gallery",
+    "heroPhotoTag": "MINI LANDSCAPE · MT1",
+    "heroFloat": "✦ Small world, big ideas",
+    "statClass": "Class",
+    "statTheme": "Inspiration",
+    "statThemeValue": "Mini tropical forest",
+    "statArchive": "Project",
+    "statArchiveValue": "2026 · MT1",
+    "aboutEyebrow": "01 / INTRODUCTION",
+    "aboutTitle": "A miniature forest with a playful twist.",
+    "aboutP1": "Miniature Tropical Forest is a Class MT1 terrarium project combining greenery, pebbles and miniature decorations inside a glass tank.",
+    "aboutP2": "A cheerful pineapple house and a blue-green miniature house stand out among the stones, foliage and playful tiny characters.",
+    "aboutP3": "Every corner combines natural textures, vibrant colours and imaginative details into an engaging miniature scene.",
+    "storyQuoteTag": "THE IDEA BEHIND THE DESIGN",
+    "storyQuote": "“Nature and imagination meet in one tiny world.”",
+    "conceptEyebrow": "02 / DESIGN CONCEPT",
+    "conceptTitle": "Four elements, one miniature world.",
+    "conceptLead": "Four distinctive details give the landscape its character, from colourful miniature houses to textured pathways and greenery.",
+    "exploreEyebrow": "03 / INTERACTIVE EXPLORER",
+    "exploreTitle": "Discover the story in every corner.",
+    "exploreLead": "Select a marker to explore the miniature houses, pebble path and greenery that shape this landscape.",
+    "tourHint": "Select markers 1 to 4 to explore the details.",
+    "tourClick": "Four elements to discover",
+    "tourIndex": "FEATURE",
+    "materialsEyebrow": "04 / LANDSCAPE ANATOMY",
+    "materialsTitle": "Beauty is in the details.",
+    "materialsLead": "From the pebbled foreground to the greenery at the back, each part completes the miniature forest scene.",
+    "anatomyTag": "EXPLORE THE COMPOSITION",
+    "anatomyIntro": "This small space comes alive with texture, colour and depth. Choose a layer to take a closer look.",
+    "anatomyTabsLabel": "Choose a landscape layer",
+    "layerFront": "Front",
+    "layerMiddle": "Middle",
+    "layerBack": "Back",
+    "anatomyFoot": "Texture · Colour · Composition",
+    "processEyebrow": "05 / BEHIND THE SCENES",
+    "processTitle": "From preparation to the final scene.",
+    "processLead": "Catch a glimpse of the project journey through material preparation, teamwork and the completed terrarium.",
+    "videoCaption": "▶ Project preparation moments",
+    "materialsPhotoLabel": "Material preparation",
+    "peoplePhotoLabel": "Teamwork",
+    "steps": [
+      {
+        "title": "Getting ready",
+        "desc": "Materials and decorations were gathered to start the project."
+      },
+      {
+        "title": "Working together",
+        "desc": "Team members brought ideas and efforts together."
+      },
+      {
+        "title": "The final display",
+        "desc": "The completed terrarium is showcased from different angles."
+      }
+    ],
+    "galleryEyebrow": "06 / GALLERY",
+    "galleryTitle": "Take a closer look.",
+    "galleryLead": "Discover the final display, design details and moments behind the terrarium project.",
+    "all": "All",
+    "final": "Finished scene",
+    "detail": "Details",
+    "process": "Process & team",
+    "zoom": "Enlarge photo",
+    "teamEyebrow": "07 / TEAMWORK",
+    "teamTitle": "Four focus areas, one vision.",
+    "teamLead": "Four areas of focus complement one another in bringing the Miniature Tropical Forest concept to life.",
+    "group": "GROUP",
+    "backTop": "Back to top ↑",
+    "footerCopy": "Class MT1 terrarium project · 2026",
+    "menuOpen": "Open menu",
+    "menuClose": "Close menu",
+    "closePhoto": "Close photo",
+    "prevPhoto": "Previous photo",
+    "nextPhoto": "Next photo",
+    "kindFinal": "Finished scene",
+    "kindDetail": "Details",
+    "kindProcess": "Process & team",
+    "ariaNav": "Main navigation",
+    "ariaExplorer": "Interactive terrarium explorer",
+    "ariaTourPick": "Choose a terrarium feature",
+    "ariaVideo": "Terrarium project preparation footage",
+    "ariaFilters": "Filter gallery photos",
+    "ariaDialog": "Full-size photo viewer",
+    "altFront": "Front view of the MT1 terrarium",
+    "altSide": "Side view of the MT1 terrarium",
+    "altExplore": "Terrarium view with interactive markers",
+    "altMaterials": "Materials used in the project",
+    "altTeam": "Group photo of the project team",
+    "pageTitle": "Miniature Tropical Forest | MT1 Terrarium",
+    "pageDescription": "Explore the Miniature Tropical Forest terrarium landscape by Class MT1."
+  }
+};
 
     let lang = 'ms';
+    try { if (localStorage.getItem('mt1-language') === 'en') lang = 'en'; } catch (_) {}
+    let currentLayer = 'front';
     let galleryFilter = 'all';
     let shownGallery = [];
     let currentPhoto = 0;
@@ -579,6 +1001,11 @@
     function translate() {
       document.documentElement.lang = lang;
       const u = UI[lang];
+      document.title = u.pageTitle;
+      const meta = document.querySelector('meta[name="description"]');
+      if (meta) meta.setAttribute('content', u.pageDescription);
+      document.querySelectorAll('[data-alt-t]').forEach(el => {if(u[el.dataset.altT]) el.alt = u[el.dataset.altT];});
+      document.querySelectorAll('[data-aria-t]').forEach(el => {if(u[el.dataset.ariaT]) el.setAttribute('aria-label',u[el.dataset.ariaT]);});
       document.querySelectorAll('[data-t]').forEach(el => { const k = el.dataset.t; if (typeof u[k] === 'string') el.textContent = u[k]; });
       $('lang-ms').setAttribute('aria-pressed', String(lang === 'ms'));
       $('lang-en').setAttribute('aria-pressed', String(lang === 'en'));
@@ -587,7 +1014,7 @@
       $('dialog-close').setAttribute('aria-label',u.closePhoto);
       $('dialog-prev').setAttribute('aria-label',u.prevPhoto);
       $('dialog-next').setAttribute('aria-label',u.nextPhoto);
-      renderFeatures(); renderTour(); renderEvidence(); renderSteps(); renderGallery(); renderTeam();
+      renderFeatures(); renderTour(); renderLayer(); renderSteps(); renderGallery(); renderTeam();
       if ($('photo-dialog').open) showDialogPhoto();
     }
     function renderFeatures() {
@@ -608,10 +1035,20 @@
       document.querySelectorAll('.hotspot').forEach(el => {el.setAttribute('aria-pressed',String(el.dataset.target === currentTour));el.setAttribute('aria-label',`${el.textContent}: ${localized(SITE_DATA.features.find(f => f.id === el.dataset.target)?.title)}`);});
       $('tour-picker').innerHTML = SITE_DATA.features.map(f => `<button type="button" data-pick="${esc(f.id)}" aria-pressed="${f.id === currentTour}" aria-label="${esc(localized(f.title))}">${f.number}</button>`).join('');
     }
-    function renderEvidence() {
-      const u=UI[lang];
-      $('seen-list').innerHTML = u.seenItems.map(s=>`<li>${esc(s)}</li>`).join('');
-      $('pending-list').innerHTML = u.pendingItems.map(s=>`<li>${esc(s)}</li>`).join('');
+    function renderLayer() {
+      const layer=SITE_DATA.layers.find(x=>x.id===currentLayer) || SITE_DATA.layers[0];
+      const img=$('anatomy-image');
+      img.src=layer.image;
+      img.alt=localized(layer.alt);
+      $('anatomy-index').textContent=layer.number+' / 03';
+      $('anatomy-title').textContent=localized(layer.title);
+      $('anatomy-description').textContent=localized(layer.description);
+      $('layer-panel').setAttribute('aria-labelledby','layer-tab-'+layer.id);
+      document.querySelectorAll('[data-layer]').forEach(btn=>{
+        const active=btn.dataset.layer===layer.id;
+        btn.setAttribute('aria-selected',String(active));
+        btn.setAttribute('tabindex',active?'0':'-1');
+      });
     }
     function renderSteps() {
       $('process-steps').innerHTML = UI[lang].steps.map((s,i)=>`<li><span class="step-index">0${i+1}</span><strong>${esc(s.title)}</strong><span>${esc(s.desc)}</span></li>`).join('');
@@ -634,9 +1071,9 @@
     function renderTeam() {
       const u=UI[lang];
       $('team-grid').innerHTML = SITE_DATA.teams.map(g=>`
-        <article class="team-card"><span class="num">${esc(u.group)} ${String(g.number).padStart(2,'0')}</span><h3>${esc(g.role)}</h3>
-        ${g.leader ? `<p><b>${esc(u.leader)}:</b> ${esc(g.leader)}</p>` : ''}
-        ${g.members.length ? `<ol>${g.members.map(x=>`<li>${esc(x)}</li>`).join('')}</ol>` : `<p>${esc(u.membersPending)}</p>`}
+        <article class="team-card"><span class="num">${esc(u.group)} ${String(g.number).padStart(2,'0')}</span>
+          <h3>${esc(localized(g.role))}</h3><p>${esc(localized(g.description))}</p>
+          ${g.members.length ? `<ul class="team-members">${g.members.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>` : ''}
         </article>`).join('');
     }
     function setTour(id) { if(SITE_DATA.features.some(f=>f.id===id)) {currentTour=id;renderTour();} }
@@ -655,8 +1092,14 @@
       $('menu-toggle').setAttribute('aria-label',open?UI[lang].menuClose:UI[lang].menuOpen);
     }
 
-    $('lang-ms').addEventListener('click',()=>{lang='ms';translate();});
-    $('lang-en').addEventListener('click',()=>{lang='en';translate();});
+    function setLanguage(value) {lang=value;try{localStorage.setItem('mt1-language',lang);}catch(_){}translate();}
+    $('lang-ms').addEventListener('click',()=>setLanguage('ms'));
+    $('lang-en').addEventListener('click',()=>setLanguage('en'));
+    $('anatomy-tabs').addEventListener('click',e=>{const b=e.target.closest('[data-layer]');if(b){currentLayer=b.dataset.layer;renderLayer();}});
+    $('anatomy-tabs').addEventListener('keydown',e=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;
+      e.preventDefault();const ids=SITE_DATA.layers.map(x=>x.id);let i=ids.indexOf(currentLayer);
+      if(e.key==='Home')i=0;else if(e.key==='End')i=ids.length-1;else i=(i+(e.key==='ArrowRight'?1:-1)+ids.length)%ids.length;
+      currentLayer=ids[i];renderLayer();$('layer-tab-'+currentLayer).focus();});
     $('menu-toggle').addEventListener('click',()=>setMenu(!$('nav').classList.contains('open')));
     $('nav').addEventListener('click',e=>{if(e.target.closest('a')) setMenu(false);});
     document.addEventListener('click',e=>{if(!$('nav').contains(e.target) && !$('menu-toggle').contains(e.target))setMenu(false);});
