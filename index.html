@@ -450,6 +450,78 @@
       .feature:hover,.gallery-card:hover,.team-card:hover,.video-card:hover,.hero-photo:hover{transform:none}
     }
 
+
+    /* ============================================================
+       12 — V3.2: KAWALAN BINGKAI FOTO, DESKTOP / TABLET / TELEFON
+       Ubah tiga nilai --tour-photo-h-* di bawah untuk melaras
+       ketinggian gambar eksplorasi pada peranti berbeza.
+       ============================================================ */
+    :root {
+      --tour-photo-h-desktop: 320px;  /* laptop / monitor */
+      --tour-photo-h-tablet: 310px;   /* tablet / pad */
+      --tour-photo-h-phone: 355px;    /* telefon */
+    }
+    .tour-panel { min-height:0; }
+    .tour-image-frame {
+      position:relative;
+      width:100%;
+      height:var(--tour-photo-h-desktop);
+      flex:0 0 auto;
+      overflow:hidden;
+      isolation:isolate;
+      border-radius:15px;
+      background:linear-gradient(145deg,#416e65,#113d45);
+    }
+    .tour-panel .tour-image-frame > img {
+      width:100%; height:100%; min-height:0;
+      display:block; border-radius:0;
+      object-fit:cover;
+      object-position:center 35%;
+      transition:none;
+    }
+    .tour-expand {
+      position:absolute;right:12px;bottom:12px;z-index:2;
+      display:inline-flex;align-items:center;gap:7px;
+      border-radius:99px;padding:7px 12px;
+      border:1px solid #ffffff8c;
+      color:#fff;background:#062e36dc;
+      box-shadow:0 4px 16px #062e3660;
+      font-size:.73rem;font-weight:800;line-height:1.3;
+      backdrop-filter:blur(9px);
+    }
+    .tour-expand:hover { background:#0d6062; }
+    .tour-expand:focus-visible { outline-offset:2px; }
+    @media(min-width:901px) {
+      .tour-image-frame { height:clamp(285px,23vw,var(--tour-photo-h-desktop)); }
+    }
+    @media(max-width:900px) and (min-width:621px) {
+      .tour-panel {
+        display:grid;
+        grid-template-columns:minmax(225px,40%) minmax(0,1fr);
+        grid-template-rows:auto auto 1fr auto;
+        align-items:start;
+        gap:0 21px;
+      }
+      .tour-panel .tour-image-frame {
+        grid-column:1;
+        grid-row:1 / span 4;
+        height:var(--tour-photo-h-tablet);
+      }
+      .tour-panel small,.tour-panel h3,.tour-panel p,.tour-panel .tour-picker {grid-column:2;min-width:0;}
+      .tour-panel small {margin-top:0;}
+      .tour-panel .tour-picker {align-self:end;margin-top:0;}
+    }
+    @media(max-width:620px) {
+      .tour-panel {display:flex;flex-direction:column;gap:0;}
+      .tour-panel .tour-image-frame {
+        height:clamp(285px,92vw,var(--tour-photo-h-phone));
+        width:100%;
+      }
+      .tour-panel small {margin-top:17px;}
+      .tour-panel .tour-picker {margin-top:14px;padding-top:0;}
+      .tour-expand {font-size:.7rem;}
+    }
+
     @media(prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
@@ -556,7 +628,10 @@
             <div class="tour-caption"><span data-t="tourHint">Pilih penanda 1 hingga 4 untuk melihat perinciannya.</span><span data-t="tourClick">Empat elemen untuk diterokai</span></div>
           </div>
           <div class="tour-panel" aria-live="polite">
-            <img id="tour-image" src="assets/rumah-nanas.jpeg" alt="Rumah nanas" loading="lazy">
+            <div class="tour-image-frame">
+              <img id="tour-image" src="assets/rumah-nanas.jpeg" alt="Rumah nanas" loading="lazy">
+              <button type="button" class="tour-expand" id="tour-expand" aria-label="Lihat gambar penuh" data-aria-t="tourExpandAria"><span aria-hidden="true">⤢</span> <span data-t="tourExpand">Lihat penuh</span></button>
+            </div>
             <small id="tour-index">TITIK 02 / 04</small>
             <h3 id="tour-title">Rumah nanas</h3>
             <p id="tour-description">Rumah nanas jingga menambahkan warna terang sebagai fokus landskap.</p>
@@ -964,6 +1039,8 @@
     "tourHint": "Pilih penanda 1 hingga 4 untuk melihat perinciannya.",
     "tourClick": "Empat elemen untuk diterokai",
     "tourIndex": "ELEMEN",
+    "tourExpand": "Lihat penuh",
+    "tourExpandAria": "Lihat foto elemen terpilih pada saiz penuh",
     "materialsEyebrow": "04 / DI SEBALIK REKA BENTUK",
     "materialsTitle": "Tiga sentuhan, satu dunia yang hidup.",
     "materialsLead": "Kenali pilihan reka bentuk yang memberi terrarium ini tekstur, keceriaan dan suasana hutan tropika.",
@@ -1068,6 +1145,8 @@
     "tourHint": "Select markers 1 to 4 to explore the details.",
     "tourClick": "Four elements to discover",
     "tourIndex": "FEATURE",
+    "tourExpand": "View full image",
+    "tourExpandAria": "View the selected feature photo in full size",
     "materialsEyebrow": "04 / BEHIND THE DESIGN",
     "materialsTitle": "Three details. One vivid little world.",
     "materialsLead": "Explore the design choices that give this terrarium its texture, playful colour and tropical-forest atmosphere.",
@@ -1143,6 +1222,7 @@
     let shownGallery = [];
     let currentPhoto = 0;
     let currentTour = 'pineapple';
+    let tourPhotoExpanded = false;
     const $ = id => document.getElementById(id);
     const localized = obj => obj && (obj[lang] ?? obj.ms) || '';
     function esc(v) { return String(v ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
@@ -1178,6 +1258,8 @@
       const item = SITE_DATA.features.find(f => f.id === currentTour) || SITE_DATA.features[0];
       $('tour-image').src = item.image;
       $('tour-image').alt = localized(item.title);
+      const imageFocalPositions = { pineapple:'center 34%', stone:'center 31%', path:'center 44%', green:'center 42%' };
+      $('tour-image').style.objectPosition = imageFocalPositions[item.id] || 'center 35%';
       $('tour-index').textContent = `${UI[lang].tourIndex} ${item.number} / 04`;
       $('tour-title').textContent = localized(item.title);
       $('tour-description').textContent = localized(item.description);
@@ -1231,13 +1313,29 @@
       // The selected details appear immediately, without fade or entrance delay.
     } }
     function showDialogPhoto() {
+      if (tourPhotoExpanded) {
+        const item=SITE_DATA.features.find(f=>f.id===currentTour) || SITE_DATA.features[0];
+        $('dialog-image').src=item.image;
+        $('dialog-image').alt=localized(item.title);
+        $('dialog-caption').textContent=localized(item.title);
+        $('dialog-prev').hidden=true;
+        $('dialog-next').hidden=true;
+        return;
+      }
       const item=shownGallery[currentPhoto]; if(!item) return;
+      $('dialog-prev').hidden=false;
+      $('dialog-next').hidden=false;
       $('dialog-image').src=item.src;
       $('dialog-image').alt=localized(item.alt);
       $('dialog-caption').textContent=`${currentPhoto+1} / ${shownGallery.length} · ${localized(item.title)}`;
     }
-    function openDialog(i) { currentPhoto=i;showDialogPhoto(); const dialog=$('photo-dialog'); if(!dialog.open){ dialog.showModal(); document.body.classList.add('modal-open'); } }
-    function changePhoto(n) {if(shownGallery.length){currentPhoto=(currentPhoto+n+shownGallery.length)%shownGallery.length;showDialogPhoto();}}
+    function openTourPhoto() {
+      tourPhotoExpanded=true;showDialogPhoto();
+      const dialog=$('photo-dialog');
+      if(!dialog.open){dialog.showModal();document.body.classList.add('modal-open');}
+    }
+    function openDialog(i) { tourPhotoExpanded=false;currentPhoto=i;showDialogPhoto(); const dialog=$('photo-dialog'); if(!dialog.open){ dialog.showModal(); document.body.classList.add('modal-open'); } }
+    function changePhoto(n) {if(!tourPhotoExpanded&&shownGallery.length){currentPhoto=(currentPhoto+n+shownGallery.length)%shownGallery.length;showDialogPhoto();}}
     function setMenu(open) {
       $('nav').classList.toggle('open',open);
       $('menu-toggle').setAttribute('aria-expanded',String(open));
@@ -1260,6 +1358,7 @@
     document.addEventListener('keydown',e=>{if(e.key==='Escape')setMenu(false);if($('photo-dialog').open&&e.key==='ArrowLeft')changePhoto(-1);if($('photo-dialog').open&&e.key==='ArrowRight')changePhoto(1);});
     document.querySelectorAll('.hotspot').forEach(el=>el.addEventListener('click',()=>setTour(el.dataset.target)));
     $('tour-picker').addEventListener('click',e=>{const b=e.target.closest('[data-pick]');if(b)setTour(b.dataset.pick);});
+    $('tour-expand').addEventListener('click',openTourPhoto);
     $('filters').addEventListener('click',e=>{const b=e.target.closest('[data-filter]');if(b){galleryFilter=b.dataset.filter;renderGallery();}});
     $('gallery-grid').addEventListener('click',e=>{const b=e.target.closest('[data-photo]');if(b)openDialog(Number(b.dataset.photo));});
     $('dialog-close').addEventListener('click',()=>$('photo-dialog').close());
