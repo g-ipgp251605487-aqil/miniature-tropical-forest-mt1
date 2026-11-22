@@ -310,6 +310,161 @@
       .feature p { font-size: .78rem; }
       .process-side { grid-template-columns: 1fr; }
     }
+
+    /* ============================================================
+       11 — MT1 V3 / MOTION, ATMOSPHERE AND POLISH
+       Animations respect prefers-reduced-motion.
+       ============================================================ */
+    :root { --ease-expo: cubic-bezier(.16,1,.3,1); }
+    body { overflow-x: clip; }
+    ::selection { background: #f5a94ca6; color: #072c35; }
+    .progress { height: 4px; background: linear-gradient(90deg,#0c9a88,#91dbb5,#f8b656); box-shadow: 0 0 14px #f5a94c66; }
+    .header { transition: box-shadow .35s ease, background .35s ease; }
+    .header.is-scrolled { box-shadow: 0 12px 32px rgba(7,44,53,.08); background: rgba(251,250,245,.96); }
+    .brand-logo { animation: logoBreath 6s ease-in-out infinite; position: relative; }
+    .brand-logo::after { content:""; position:absolute; inset:-5px; border:1px solid #398b7f50; border-radius:17px; }
+    .nav a { position:relative; transition:color .25s ease; }
+    .nav a::after { content:""; position:absolute; left:0; right:100%; bottom:5px; height:2px; background:var(--orange); transition:right .35s var(--ease-expo); }
+    .nav a:hover::after,.nav a[aria-current="location"]::after { right:0; }
+    .nav a[aria-current="location"] { box-shadow: none; }
+    .hero { min-height: 670px; }
+    .hero::before { animation: heroAura 13s ease-in-out infinite alternate; }
+    .hero::after { animation: haloFloat 15s ease-in-out infinite alternate; }
+    .hero-ambient { position:absolute; inset:0; overflow:hidden; z-index:-1; pointer-events:none; }
+    .amb { position:absolute; border:1px solid #bfeedd30; border-radius:50%; box-shadow: 0 0 20px #6fdbc214; animation: ambientDrift 11s ease-in-out infinite alternate; }
+    .amb-one { width:13px;height:13px;top:14%;left:7%;animation-delay:-1s; }
+    .amb-two { width:6px;height:6px;top:30%;left:54%;animation-delay:-5s; }
+    .amb-three { width:19px;height:19px;top:74%;left:11%;animation-delay:-3s; }
+    .amb-four { width:8px;height:8px;top:62%;left:92%;animation-delay:-7s; }
+    .amb-five { width:9px;height:9px;top:17%;left:84%;animation-delay:-2s; }
+    .amb-six { width:16px;height:16px;top:84%;left:61%;animation-delay:-4s; }
+    .hero h1 span { background:linear-gradient(95deg,#ffd192 7%,#f5a94c 44%,#ffdeae 62%,#f5a94c 87%); background-size:250% auto; -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; animation:titleShimmer 10s ease-in-out infinite; }
+    .hero-copy { position: relative; z-index:2; }
+    .hero .eyebrow { animation: fadeEntrance .85s .08s both; }
+    .hero h1 { animation: fadeEntrance .9s .22s both; }
+    .hero-copy>p { animation: fadeEntrance .9s .39s both; }
+    .hero .button-row { animation: fadeEntrance .9s .52s both; }
+    .hero-photo-wrap { animation: photoEntrance 1.2s .3s both; }
+    .hero-photo { isolation:isolate; transition:transform .75s var(--ease-expo),box-shadow .6s ease; }
+    .hero-photo:hover { transform:translateY(-6px) rotate(.3deg);box-shadow:0 45px 100px #0009; }
+    .hero-photo img { animation: quietZoom 24s ease-in-out infinite alternate; }
+    .hero-photo-secondary { animation: floatCard 8s ease-in-out infinite; }
+    .hero-float { animation:floatCard 6s ease-in-out infinite alternate; }
+    .hero-orbit { position:absolute; color:#c5f3e2; text-shadow:0 0 22px #c4f2da; z-index:2; pointer-events:none; }
+    .hero-orbit--one { top:15%;right:-26px;font-size:38px;animation:spinPulse 12s ease-in-out infinite; }
+    .hero-orbit--two { bottom:12%;left:-27px;font-size:31px;animation:spinPulse 16s -4s ease-in-out infinite reverse; }
+    .hero-scroll { position:absolute; bottom:15px; left:50%; transform:translateX(-50%);display:flex;align-items:center;gap:11px;font-size:.68rem;letter-spacing:.19em;font-weight:850;color:#c8e9df;z-index:4; white-space:nowrap; opacity:.8; }
+    .scroll-wheel { display:inline-flex;width:18px;height:29px;border:1.5px solid #bde9d5;border-radius:20px;justify-content:center; }
+    .scroll-wheel::after { content:"";width:3px;height:7px;margin-top:5px;background:var(--orange);border-radius:9px;animation:scrollWheel 1.8s ease-in-out infinite; }
+    .btn { position:relative;overflow:hidden; transition:transform .35s var(--ease-expo),box-shadow .35s ease,background .35s ease; }
+    .btn::before { content:"";position:absolute;width:50%;height:260%;left:-80%;top:-75%;background:linear-gradient(90deg,transparent,#fff6,transparent);transform:rotate(23deg);transition:left .7s ease; }
+    .btn:hover::before { left:140%; }
+    .btn--gold:hover { box-shadow:0 12px 28px #f5a94c4a; }
+    .stats-grid .stat { transition: transform .3s ease; }
+    .stats-grid .stat:hover { transform:translateY(-3px); }
+    .story-quote { position:relative;isolation:isolate;overflow:hidden; transition:transform .45s var(--ease-expo); }
+    .story-quote:hover { transform:translateY(-5px); }
+    .story-quote::after { content:"❋"; position:absolute; font-size:230px;right:-30px;bottom:-95px;color:#ffffff0a;z-index:-1;animation:slowRotate 38s linear infinite; }
+    .feature,.gallery-card,.team-card { transition:transform .5s var(--ease-expo),box-shadow .5s ease,border-color .4s ease; }
+    .feature:hover,.gallery-card:hover,.team-card:hover { transform:translateY(-7px);box-shadow:0 23px 45px #123e3820;border-color:#b8d8c9; }
+    .feature img { transition:transform .8s var(--ease-expo),filter .6s ease; }
+    .feature:hover img { transform:scale(1.065);filter:saturate(1.12); }
+    .hotspot { animation: hotspotPulse 3s ease-in-out infinite; }
+    .hotspot:nth-of-type(2){animation-delay:.6s}.hotspot:nth-of-type(3){animation-delay:1.2s}.hotspot:nth-of-type(4){animation-delay:1.8s}
+    .hotspot[aria-pressed="true"] { animation: hotspotActive 2s ease-in-out infinite; }
+    .tour-panel { transition: border-color .3s ease, box-shadow .3s ease; }
+    .tour-panel:hover { border-color:#d5f3e362; box-shadow:0 15px 35px #0002; }
+    .tour-panel.is-updating img,.tour-panel.is-updating h3,.tour-panel.is-updating p { animation: contentRise .5s both; }
+    .tour-panel.is-updating h3 { animation-delay:.05s; }.tour-panel.is-updating p { animation-delay:.1s; }
+    .section--anatomy { position:relative;overflow:hidden; background:radial-gradient(circle at 94% 11%,#dfece2 0,transparent 28%),#f6f2e9; }
+    .section--anatomy::before { content:"";position:absolute;width:520px;height:520px;border-radius:50%;right:-310px;bottom:-360px;border:1px solid #a4cbb552;box-shadow:0 0 0 72px #c6dac629,0 0 0 144px #c6dac615;pointer-events:none; }
+    .anatomy-media { isolation:isolate; }
+    .anatomy-media::after {content:"";position:absolute;inset:42% 0 0;background:linear-gradient(0deg,#0b272e86,transparent);pointer-events:none; }
+    .anatomy-media-glow {position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(110deg,transparent 25%,#ffffff3a 45%,transparent 60%);background-size:300% 100%;animation:softGlimmer 14s ease-in-out infinite;mix-blend-mode:soft-light;}
+    .anatomy-media img {transition:opacity .25s ease,transform 1.2s var(--ease-expo),filter 1.2s ease;}
+    .anatomy-media:hover img {transform:scale(1.045);}
+    .anatomy-photo-tag { z-index:2;backdrop-filter:blur(8px);display:flex;gap:9px;align-items:center; }
+    .photo-tag-dot {width:7px;height:7px;flex:none;border-radius:50%;background:#f8ba63;box-shadow:0 0 0 4px #f8ba6342;animation:glowDot 2.5s infinite;}
+    .anatomy-tabs {gap:10px;}
+    .anatomy-tabs button {position:relative;overflow:hidden;display:flex; flex-direction:column;align-items:center;justify-content:center;gap:6px;min-height:88px; transition:transform .3s var(--ease-expo),background .3s ease,box-shadow .3s ease,border-color .3s ease;}
+    .anatomy-tabs button:hover {transform:translateY(-3px);border-color:#84b6a5;}
+    .anatomy-tabs button[aria-selected="true"] { box-shadow:0 14px 25px #092b3527; }
+    .anatomy-tabs button span.anatomy-tab-symbol {display:block;font-size:1.55rem;font-weight:400;line-height:1;color:#4a8d83;transition:transform .35s ease,color .35s ease;}
+    .anatomy-tabs button[aria-selected="true"] .anatomy-tab-symbol {color:#f9c47b;transform:scale(1.15) rotate(-12deg);}
+    .anatomy-detail.is-changing {animation:contentRise .48s var(--ease-expo) both;}
+    .anatomy-index { display:inline-flex;align-items:center;gap:8px; }
+    .anatomy-index::before { content:"";width:19px;height:2px;background:currentColor; }
+    .anatomy-foot { display:flex;align-items:center;gap:8px; }
+    .anatomy-foot::before { content:"✧";font-size:1.2rem;color:#b37a3c; }
+    .steps li {transition:transform .3s ease;}
+    .steps li:hover {transform:translateX(5px);}
+    .video-card {transition:transform .5s var(--ease-expo),box-shadow .5s ease;}
+    .video-card:hover {transform:translateY(-5px);box-shadow:0 25px 70px #0d373528;}
+    .process-side figure img {transition:transform .8s var(--ease-expo);}
+    .process-side figure:hover img {transform:scale(1.07);}
+    .gallery-image {transition:transform .7s var(--ease-expo),filter .6s ease;}
+    .gallery-button:hover .gallery-image {transform:scale(1.085);filter:saturate(1.15);}
+    .filters button {transition:background .3s ease,color .3s ease,transform .25s ease;}
+    .filters button:hover {transform:translateY(-2px);}
+    /* Team: 2 generous columns so long personal names fit on ONE line.
+       Consistent head height aligns Group 01–04 members to same vertical row. */
+    .team-grid {grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;align-items:stretch;}
+    .team-card {position:relative;display:flex;flex-direction:column;min-width:0;min-height:0;padding:29px;border-radius:24px;overflow:hidden;}
+    .team-card::before {content:"";position:absolute;left:0;top:0;right:0;height:4px;background:linear-gradient(90deg,#0b6e71,#6bbca6,#f4ac52);opacity:.7;transition:opacity .3s ease;}
+    .team-card:hover::before {opacity:1;}
+    .team-card-head {height:151px;flex:none;min-width:0;}
+    .team-card .num {display:inline-block;padding:5px 12px;border-radius:99px;background:#e8f5ed;color:#24645d;}
+    .team-card h3 {font-size:1.5rem;line-height:1.23;margin:14px 0 7px;color:var(--deep);}
+    .team-card p {font-size:.9rem;line-height:1.55;}
+    .team-members {list-style:none;margin:0;padding:12px 0 0;border-top:1px solid #e2eae5;display:grid;gap:0;}
+    .team-members li {display:flex;align-items:center;gap:10px;min-width:0;padding:10px 0;border-bottom:1px solid #eef2ee;}
+    .team-members li:last-child {border-bottom:0;}
+    .member-index {flex:none;color:#36897a;background:#e9f5ee;border-radius:7px;display:grid;place-items:center;width:28px;height:28px;font-size:.66rem;line-height:1;font-weight:900;}
+    .member-name {font-weight:700;font-size:.82rem;line-height:1.35;letter-spacing:-.018em;color:#2d514d;white-space:nowrap;}
+    .back-top {transition:background .3s ease,transform .3s ease;}
+    .back-top:hover {background:#ffffff20;transform:translateY(-3px);}
+    /* Reveal works only after JS adds motion-ready, preserving content without JS */
+    .motion-ready .reveal {opacity:0;transform:translateY(26px);filter:blur(4px);transition:opacity .85s var(--ease-expo),transform .85s var(--ease-expo),filter .85s ease;transition-delay:var(--reveal-delay,0ms);}
+    .motion-ready .reveal.is-visible {opacity:1;transform:translateY(0);filter:blur(0);}
+    @keyframes fadeEntrance {from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes photoEntrance {from{opacity:0;transform:translate(25px,24px) scale(.96)}to{opacity:1;transform:translate(0,0) scale(1)}}
+    @keyframes titleShimmer {0%,100%{background-position:100% center}50%{background-position:0 center}}
+    @keyframes heroAura {from{filter:hue-rotate(0deg);transform:scale(1)}to{filter:hue-rotate(14deg);transform:scale(1.1)}}
+    @keyframes haloFloat {from{transform:translate3d(0,0,0)}to{transform:translate3d(-35px,30px,0)}}
+    @keyframes ambientDrift {from{transform:translate3d(0,0,0) scale(.8);opacity:.25}to{transform:translate3d(35px,-55px,0) scale(1.3);opacity:.85}}
+    @keyframes quietZoom {from{transform:scale(1)}to{transform:scale(1.055)}}
+    @keyframes floatCard {0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+    @keyframes spinPulse {0%,100%{transform:rotate(-15deg) scale(.9);opacity:.55}50%{transform:rotate(22deg) scale(1.15);opacity:1}}
+    @keyframes scrollWheel {0%{opacity:0;transform:translateY(0)}40%{opacity:1}100%{opacity:0;transform:translateY(10px)}}
+    @keyframes logoBreath {0%,100%{box-shadow:0 0 0 0 #9be1ce24}50%{box-shadow:0 0 0 9px #9be1ce12}}
+    @keyframes slowRotate {to{transform:rotate(360deg)}}
+    @keyframes hotspotPulse {0%,100%{box-shadow:0 0 0 7px #f5a94c55,0 10px 30px #0006}50%{box-shadow:0 0 0 13px #f5a94c08,0 10px 30px #0006}}
+    @keyframes hotspotActive {0%,100%{box-shadow:0 0 0 7px #ffffff3a,0 10px 30px #0006}50%{box-shadow:0 0 0 13px #ffffff08,0 10px 30px #0006}}
+    @keyframes contentRise {from{opacity:.25;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes softGlimmer {0%,50%{background-position:125% center}100%{background-position:-120% center}}
+    @keyframes glowDot {0%,100%{box-shadow:0 0 0 4px #f8ba6342}50%{box-shadow:0 0 0 8px #f8ba6310}}
+    @media(max-width:1080px){.team-grid{grid-template-columns:1fr}.team-card-head{height:auto;min-height:135px}.team-card{padding:25px}.member-name{white-space:nowrap}}
+    @media(max-width:900px){.hero-scroll{bottom:14px}.hero-orbit--one{right:0}.hero-orbit--two{left:0}}
+    @media(max-width:620px){
+      .hero {min-height:0}.hero-grid{padding-bottom:111px}.hero-scroll{bottom:13px;font-size:.6rem}
+      .hero-orbit {font-size:25px}.hero-float {z-index:3}
+      .anatomy-tabs button {min-height:76px;padding:9px 5px;gap:4px}
+      .anatomy-tabs button span.anatomy-tab-symbol {font-size:1.3rem}
+      .team-grid {gap:16px}
+      .team-card {padding:21px}
+      .team-card-head {min-height:0;height:auto;padding-bottom:19px}
+      .team-card h3 {font-size:1.35rem}
+      .team-members {padding-top:9px}
+      .member-name {white-space:normal;overflow-wrap:anywhere;font-size:.78rem}
+      .team-members li{align-items:flex-start;gap:9px}
+      .member-index{margin-top:1px}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .hero::before,.hero::after,.amb,.hero-photo img,.hero-photo-secondary,.hero-float,.hero-orbit,.hero h1 span,.brand-logo,.story-quote::after,.hotspot,.scroll-wheel::after,.anatomy-media-glow,.photo-tag-dot{animation:none!important}
+      .motion-ready .reveal{opacity:1!important;transform:none!important;filter:none!important}
+      .feature:hover,.gallery-card:hover,.team-card:hover,.video-card:hover,.hero-photo:hover{transform:none}
+    }
+
     @media(prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
@@ -345,6 +500,7 @@
   </header>
   <main id="main">
     <section class="hero" id="home">
+      <div class="hero-ambient" aria-hidden="true"><i class="amb amb-one"></i><i class="amb amb-two"></i><i class="amb amb-three"></i><i class="amb amb-four"></i><i class="amb amb-five"></i><i class="amb amb-six"></i></div>
       <div class="wrap hero-grid">
         <div class="hero-copy">
           <div class="eyebrow" data-t="heroEyebrow">PAMERAN PROJEK · KELAS MT1</div>
@@ -356,11 +512,14 @@
           </div>
         </div>
         <div class="hero-photo-wrap">
+          <div class="hero-orbit hero-orbit--one" aria-hidden="true">✦</div>
+          <div class="hero-orbit hero-orbit--two" aria-hidden="true">❋</div>
           <div class="hero-photo"><img id="hero-front" src="assets/terrarium-hadapan.jpeg" data-alt-t="altFront" alt="Pandangan hadapan terrarium MT1" fetchpriority="high"><span class="hero-photo-tag" data-t="heroPhotoTag">LANDSKAP MINI · MT1</span></div>
           <div class="hero-photo-secondary"><img src="assets/terrarium-sudut-kedua.jpeg" data-alt-t="altSide" alt="Pandangan sisi terrarium MT1" loading="lazy"></div>
           <div class="hero-float" data-t="heroFloat">✦ Dunia kecil, idea besar</div>
         </div>
       </div>
+      <a href="#about" class="hero-scroll" aria-label="Teruskan meneroka" data-aria-t="ariaScroll"><span class="scroll-wheel" aria-hidden="true"></span><span data-t="scrollPrompt">TATAL UNTUK TEROKAI</span></a>
     </section>
     <div class="stats">
       <div class="wrap stats-grid">
@@ -424,27 +583,28 @@
 
     <section class="section section--anatomy" id="materials">
       <div class="wrap">
-        <div class="eyebrow" data-t="materialsEyebrow">04 / ANATOMI LANDSKAP</div>
-        <h2 class="heading" data-t="materialsTitle">Keindahan terletak pada perincian.</h2>
-        <p class="lead" data-t="materialsLead">Daripada tekstur kerikil di hadapan hingga hijauan di bahagian belakang, setiap lapisan membantu membentuk pemandangan hutan mini.</p>
+        <div class="eyebrow" data-t="materialsEyebrow">04 / DI SEBALIK REKA BENTUK</div>
+        <h2 class="heading" data-t="materialsTitle">Tiga sentuhan, satu dunia yang hidup.</h2>
+        <p class="lead" data-t="materialsLead">Kenali pilihan reka bentuk yang memberi terrarium ini tekstur, keceriaan dan suasana hutan tropika.</p>
         <div class="anatomy-layout">
           <div class="anatomy-media">
+            <div class="anatomy-media-glow" aria-hidden="true"></div>
             <img id="anatomy-image" src="assets/laluan-batu.jpeg" alt="Kerikil dan laluan kecil di hadapan terrarium" loading="lazy">
-            <div class="anatomy-photo-tag" data-t="anatomyTag">TELITI SUSUNANNYA</div>
+            <div class="anatomy-photo-tag"><span class="photo-tag-dot" aria-hidden="true"></span><span data-t="anatomyTag">CERITA REKA BENTUK</span></div>
           </div>
           <div class="anatomy-content">
-            <div class="anatomy-intro" data-t="anatomyIntro">Lihat bagaimana ruang yang kecil boleh mempunyai kedalaman, tekstur dan karakter.</div>
+            <div class="anatomy-intro" data-t="anatomyIntro">Bukan sekadar hiasan — setiap pilihan membantu membentuk cerita landskap ini.</div>
             <div class="anatomy-tabs" id="anatomy-tabs" role="tablist" aria-label="Pilih bahagian landskap" data-aria-t="anatomyTabsLabel">
-              <button type="button" id="layer-tab-front" role="tab" aria-selected="true" aria-controls="layer-panel" tabindex="0" data-layer="front">01 <span data-t="layerFront">Hadapan</span></button>
-              <button type="button" id="layer-tab-middle" role="tab" aria-selected="false" aria-controls="layer-panel" tabindex="-1" data-layer="middle">02 <span data-t="layerMiddle">Tengah</span></button>
-              <button type="button" id="layer-tab-back" role="tab" aria-selected="false" aria-controls="layer-panel" tabindex="-1" data-layer="back">03 <span data-t="layerBack">Belakang</span></button>
+              <button type="button" id="layer-tab-front" role="tab" aria-selected="true" aria-controls="layer-panel" tabindex="0" data-layer="front"><span class="anatomy-tab-symbol" aria-hidden="true">◈</span><span data-t="layerFront">Tekstur</span></button>
+              <button type="button" id="layer-tab-middle" role="tab" aria-selected="false" aria-controls="layer-panel" tabindex="-1" data-layer="middle"><span class="anatomy-tab-symbol" aria-hidden="true">✦</span><span data-t="layerMiddle">Warna</span></button>
+              <button type="button" id="layer-tab-back" role="tab" aria-selected="false" aria-controls="layer-panel" tabindex="-1" data-layer="back"><span class="anatomy-tab-symbol" aria-hidden="true">❋</span><span data-t="layerBack">Suasana</span></button>
             </div>
             <div class="anatomy-detail" id="layer-panel" role="tabpanel" aria-labelledby="layer-tab-front" tabindex="0" aria-live="polite">
               <span class="anatomy-index" id="anatomy-index">01 / 03</span>
-              <h3 id="anatomy-title">Tekstur permukaan</h3>
-              <p id="anatomy-description">Batu kecil dan kerikil membentuk laluan yang memandu pandangan ke arah rumah mini.</p>
+              <h3 id="anatomy-title">Laluan yang bercerita</h3>
+              <p id="anatomy-description">Gabungan batu dan kerikil menghasilkan jalinan permukaan yang jelas, seolah-olah mengundang kita menyusuri dunia kecil ini.</p>
             </div>
-            <div class="anatomy-foot" data-t="anatomyFoot">Tekstur · Warna · Komposisi</div>
+            <div class="anatomy-foot" data-t="anatomyFoot">Perincian kecil, impak visual besar</div>
           </div>
         </div>
       </div>
@@ -571,57 +731,57 @@
   ],
   "layers": [
     {
-      "id": "front",
-      "number": "01",
-      "image": "assets/laluan-batu.jpeg",
-      "title": {
-        "ms": "Tekstur permukaan",
-        "en": "Surface textures"
-      },
-      "description": {
-        "ms": "Kerikil dan batu kecil membentuk laluan di bahagian hadapan, menambah kedalaman serta arah pandangan ke dalam landskap.",
-        "en": "Pebbles and small stones form a foreground pathway, adding depth and guiding the eye into the scene."
-      },
-      "alt": {
-        "ms": "Laluan batu dan kerikil di hadapan terrarium",
-        "en": "Pebble pathway in the foreground of the terrarium"
-      }
+        "id": "front",
+        "number": "01",
+        "image": "assets/laluan-batu.jpeg",
+        "title": {
+            "ms": "Laluan yang bercerita",
+            "en": "A pathway with a story"
+        },
+        "description": {
+            "ms": "Gabungan batu dan kerikil menghasilkan jalinan permukaan yang jelas, seolah-olah mengundang kita menyusuri dunia kecil ini.",
+            "en": "A mix of pebbles and stones creates rich surface texture, inviting us to wander through this miniature world."
+        },
+        "alt": {
+            "ms": "Jalinan batu dan kerikil yang membentuk laluan mini",
+            "en": "Textured stones and pebbles forming a miniature path"
+        }
     },
     {
-      "id": "middle",
-      "number": "02",
-      "image": "assets/rumah-nanas.jpeg",
-      "title": {
-        "ms": "Tumpuan di bahagian tengah",
-        "en": "A central focal point"
-      },
-      "description": {
-        "ms": "Rumah nanas yang terang dan rumah biru kehijauan menonjol sebagai elemen utama, ditemani karakter hiasan kecil.",
-        "en": "The bright pineapple house and blue-green house act as focal points, accompanied by small decorative characters."
-      },
-      "alt": {
-        "ms": "Rumah nanas jingga di tengah landskap mini",
-        "en": "Orange pineapple house in the miniature scene"
-      }
+        "id": "middle",
+        "number": "02",
+        "image": "assets/rumah-nanas.jpeg",
+        "title": {
+            "ms": "Warna yang mencuri tumpuan",
+            "en": "Colour that catches the eye"
+        },
+        "description": {
+            "ms": "Rumah nanas jingga, rumah biru kehijauan dan karakter mini mewujudkan kontras warna yang ceria di tengah landskap hijau.",
+            "en": "The orange pineapple house, blue-green house and tiny character create a cheerful colour contrast among the greenery."
+        },
+        "alt": {
+            "ms": "Rumah nanas dan perhiasan berwarna terang dalam terrarium",
+            "en": "Brightly coloured pineapple house and decorations in the terrarium"
+        }
     },
     {
-      "id": "back",
-      "number": "03",
-      "image": "assets/hijauan-medium.jpeg",
-      "title": {
-        "ms": "Latar hijau yang subur",
-        "en": "A lush green backdrop"
-      },
-      "description": {
-        "ms": "Susunan hijauan pada bahagian belakang membingkaikan rumah mini dan melengkapkan suasana seperti hutan tropika.",
-        "en": "Greenery at the back frames the miniature houses and completes the tropical forest atmosphere."
-      },
-      "alt": {
-        "ms": "Hijauan pada bahagian belakang terrarium",
-        "en": "Green foliage at the back of the terrarium"
-      }
+        "id": "back",
+        "number": "03",
+        "image": "assets/hijauan-medium.jpeg",
+        "title": {
+            "ms": "Suasana hutan mini",
+            "en": "A miniature forest atmosphere"
+        },
+        "description": {
+            "ms": "Susunan hijauan dengan medium berwarna gelap menyatukan hiasan dan tekstur, lalu memberikan identiti hutan tropika pada keseluruhan karya.",
+            "en": "Green foliage and dark substrate connect the decorations and textures, giving the entire scene its tropical-forest identity."
+        },
+        "alt": {
+            "ms": "Hijauan dan medium gelap yang membentuk suasana hutan mini",
+            "en": "Greenery and dark substrate creating a miniature forest atmosphere"
+        }
     }
-  ],
+],
   "gallery": [
     {
       "id": "front",
@@ -782,6 +942,8 @@
 
     const UI = {
   "ms": {
+    "ariaScroll": "Tatal untuk meneroka kandungan",
+    "scrollPrompt": "TATAL UNTUK TEROKAI",
     "skip": "Langkau ke kandungan",
     "navAbout": "Pengenalan",
     "navConcept": "Konsep",
@@ -817,16 +979,16 @@
     "tourHint": "Pilih penanda 1 hingga 4 untuk melihat perinciannya.",
     "tourClick": "Empat elemen untuk diterokai",
     "tourIndex": "ELEMEN",
-    "materialsEyebrow": "04 / ANATOMI LANDSKAP",
-    "materialsTitle": "Keindahan terletak pada perincian.",
-    "materialsLead": "Daripada tekstur kerikil di hadapan hingga hijauan di bahagian belakang, setiap bahagian melengkapkan pemandangan hutan mini.",
-    "anatomyTag": "TELITI SUSUNANNYA",
-    "anatomyIntro": "Ruang kecil ini diperkaya dengan tekstur, warna dan kedalaman. Pilih bahagian untuk menerokainya.",
-    "anatomyTabsLabel": "Pilih bahagian landskap",
-    "layerFront": "Hadapan",
-    "layerMiddle": "Tengah",
-    "layerBack": "Belakang",
-    "anatomyFoot": "Tekstur · Warna · Komposisi",
+    "materialsEyebrow": "04 / DI SEBALIK REKA BENTUK",
+    "materialsTitle": "Tiga sentuhan, satu dunia yang hidup.",
+    "materialsLead": "Kenali pilihan reka bentuk yang memberi terrarium ini tekstur, keceriaan dan suasana hutan tropika.",
+    "anatomyTag": "CERITA REKA BENTUK",
+    "anatomyIntro": "Bukan sekadar hiasan — setiap pilihan membantu membentuk cerita landskap ini.",
+    "anatomyTabsLabel": "Pilih aspek reka bentuk",
+    "layerFront": "Tekstur",
+    "layerMiddle": "Warna",
+    "layerBack": "Suasana",
+    "anatomyFoot": "Perincian kecil, impak visual besar",
     "processEyebrow": "05 / DI SEBALIK TABIR",
     "processTitle": "Daripada persediaan kepada hasil akhir.",
     "processLead": "Lihat secebis perjalanan projek ini melalui rakaman persediaan bahan, momen kerjasama dan pemandangan terrarium yang siap.",
@@ -884,6 +1046,8 @@
     "pageDescription": "Jelajahi landskap terrarium Miniature Tropical Forest oleh kelas MT1."
   },
   "en": {
+    "ariaScroll": "Scroll to explore the content",
+    "scrollPrompt": "SCROLL TO EXPLORE",
     "skip": "Skip to content",
     "navAbout": "Introduction",
     "navConcept": "Concept",
@@ -919,16 +1083,16 @@
     "tourHint": "Select markers 1 to 4 to explore the details.",
     "tourClick": "Four elements to discover",
     "tourIndex": "FEATURE",
-    "materialsEyebrow": "04 / LANDSCAPE ANATOMY",
-    "materialsTitle": "Beauty is in the details.",
-    "materialsLead": "From the pebbled foreground to the greenery at the back, each part completes the miniature forest scene.",
-    "anatomyTag": "EXPLORE THE COMPOSITION",
-    "anatomyIntro": "This small space comes alive with texture, colour and depth. Choose a layer to take a closer look.",
-    "anatomyTabsLabel": "Choose a landscape layer",
-    "layerFront": "Front",
-    "layerMiddle": "Middle",
-    "layerBack": "Back",
-    "anatomyFoot": "Texture · Colour · Composition",
+    "materialsEyebrow": "04 / BEHIND THE DESIGN",
+    "materialsTitle": "Three details. One vivid little world.",
+    "materialsLead": "Explore the design choices that give this terrarium its texture, playful colour and tropical-forest atmosphere.",
+    "anatomyTag": "DESIGN STORIES",
+    "anatomyIntro": "More than decoration — every detail helps tell the story of this miniature landscape.",
+    "anatomyTabsLabel": "Choose a design element",
+    "layerFront": "Texture",
+    "layerMiddle": "Colour",
+    "layerBack": "Atmosphere",
+    "anatomyFoot": "Small details, big visual impact",
     "processEyebrow": "05 / BEHIND THE SCENES",
     "processTitle": "From preparation to the final scene.",
     "processLead": "Catch a glimpse of the project journey through material preparation, teamwork and the completed terrarium.",
@@ -1035,15 +1199,37 @@
       document.querySelectorAll('.hotspot').forEach(el => {el.setAttribute('aria-pressed',String(el.dataset.target === currentTour));el.setAttribute('aria-label',`${el.textContent}: ${localized(SITE_DATA.features.find(f => f.id === el.dataset.target)?.title)}`);});
       $('tour-picker').innerHTML = SITE_DATA.features.map(f => `<button type="button" data-pick="${esc(f.id)}" aria-pressed="${f.id === currentTour}" aria-label="${esc(localized(f.title))}">${f.number}</button>`).join('');
     }
+    let lastRenderedLayer = null;
+    let imageSwitchToken = 0;
     function renderLayer() {
       const layer=SITE_DATA.layers.find(x=>x.id===currentLayer) || SITE_DATA.layers[0];
       const img=$('anatomy-image');
-      img.src=layer.image;
-      img.alt=localized(layer.alt);
+      const layerChanged = lastRenderedLayer !== layer.id;
+      if (layerChanged) {
+        const token=++imageSwitchToken;
+        const nextImage = new Image();
+        img.style.opacity='0';
+        const finish = () => {
+          if (token!==imageSwitchToken) return;
+          img.src=layer.image;
+          img.alt=localized(layer.alt);
+          requestAnimationFrame(()=>{ if(token===imageSwitchToken) img.style.opacity='1'; });
+        };
+        nextImage.onload=finish;
+        nextImage.onerror=finish;
+        nextImage.src=layer.image;
+      } else { img.alt=localized(layer.alt); }
+      lastRenderedLayer=layer.id;
+      const detail=$('layer-panel');
       $('anatomy-index').textContent=layer.number+' / 03';
       $('anatomy-title').textContent=localized(layer.title);
       $('anatomy-description').textContent=localized(layer.description);
-      $('layer-panel').setAttribute('aria-labelledby','layer-tab-'+layer.id);
+      detail.setAttribute('aria-labelledby','layer-tab-'+layer.id);
+      if (layerChanged) {
+        detail.classList.remove('is-changing');
+        void detail.offsetWidth;
+        detail.classList.add('is-changing');
+      }
       document.querySelectorAll('[data-layer]').forEach(btn=>{
         const active=btn.dataset.layer===layer.id;
         btn.setAttribute('aria-selected',String(active));
@@ -1071,12 +1257,18 @@
     function renderTeam() {
       const u=UI[lang];
       $('team-grid').innerHTML = SITE_DATA.teams.map(g=>`
-        <article class="team-card"><span class="num">${esc(u.group)} ${String(g.number).padStart(2,'0')}</span>
-          <h3>${esc(localized(g.role))}</h3><p>${esc(localized(g.description))}</p>
-          ${g.members.length ? `<ul class="team-members">${g.members.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>` : ''}
+        <article class="team-card">
+          <div class="team-card-head"><span class="num">${esc(u.group)} ${String(g.number).padStart(2,'0')}</span>
+            <h3>${esc(localized(g.role))}</h3><p>${esc(localized(g.description))}</p></div>
+          ${g.members.length ? `<ul class="team-members">${g.members.map((x,i)=>`<li><span class="member-index" aria-hidden="true">${String(i+1).padStart(2,'0')}</span><span class="member-name">${esc(x)}</span></li>`).join('')}</ul>` : ''}
         </article>`).join('');
     }
-    function setTour(id) { if(SITE_DATA.features.some(f=>f.id===id)) {currentTour=id;renderTour();} }
+    function setTour(id) { if(SITE_DATA.features.some(f=>f.id===id)) {
+      currentTour=id;renderTour();
+      const panel=document.querySelector('.tour-panel');
+      panel.classList.remove('is-updating'); void panel.offsetWidth;
+      panel.classList.add('is-updating');
+    } }
     function showDialogPhoto() {
       const item=shownGallery[currentPhoto]; if(!item) return;
       $('dialog-image').src=item.src;
@@ -1121,6 +1313,33 @@
       document.querySelectorAll('main section[id]').forEach(s=>observer.observe(s));
     }
     translate();
+    // Progressive enhancement: content remains visible when scripts or observers are unavailable.
+    const reduceMotion=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduceMotion && 'IntersectionObserver' in window) {
+      const candidates=document.querySelectorAll('.section .eyebrow, .section .heading, .section .lead, .story-copy p, .story-quote, .feature, .tour-photo, .tour-panel, .anatomy-media, .anatomy-content, .video-card, .process-side figure, .steps li, .gallery-card, .team-card');
+      candidates.forEach((el,i)=>{ el.classList.add('reveal'); el.style.setProperty('--reveal-delay', ((i%4)*65)+'ms'); });
+      document.body.classList.add('motion-ready');
+      const revealObserver=new IntersectionObserver((entries,observer)=>{
+        entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target);}});
+      },{threshold:.06,rootMargin:'0px 0px -35px 0px'});
+      candidates.forEach(el=>revealObserver.observe(el));
+      // Rendered cards are rebuilt when switching language or gallery category.
+      const newCardsObserver=new MutationObserver(records=>{
+        for(const record of records){
+          for(const node of record.addedNodes){
+            if(node.nodeType!==1)continue;
+            if(node.matches?.('.feature,.gallery-card,.team-card,.steps li')) {
+              node.classList.add('reveal');node.style.setProperty('--reveal-delay','60ms');
+              revealObserver.observe(node);
+            }
+          }
+        }
+      });
+      ['features','gallery-grid','team-grid','process-steps'].forEach(id=>newCardsObserver.observe($(id),{childList:true}));
+    }
+    const header=$('top');
+    const updateHeader=()=>header.classList.toggle('is-scrolled',window.scrollY>14);
+    window.addEventListener('scroll',updateHeader,{passive:true});updateHeader();
   </script>
 </body>
 </html>
