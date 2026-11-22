@@ -29,7 +29,7 @@
       --radius: 24px;
     }
     *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 22px); }
+    html { scroll-behavior: auto; scroll-padding-top: calc(var(--nav-h) + 22px); }
     body { margin: 0; background: var(--cream); color: var(--ink); font: 400 16px/1.7 system-ui, -apple-system, "Segoe UI", Arial, sans-serif; }
     body.modal-open { overflow: hidden; }
     [hidden] { display: none !important; }
@@ -364,34 +364,28 @@
     .stats-grid .stat:hover { transform:translateY(-3px); }
     .story-quote { position:relative;isolation:isolate;overflow:hidden; transition:transform .45s var(--ease-expo); }
     .story-quote:hover { transform:translateY(-5px); }
-    .story-quote::after { content:"❋"; position:absolute; font-size:230px;right:-30px;bottom:-95px;color:#ffffff0a;z-index:-1;animation:slowRotate 38s linear infinite; }
+    .story-quote::after { content:"❋"; position:absolute; font-size:230px;right:-30px;bottom:-95px;color:#ffffff0a;z-index:-1; }
     .feature,.gallery-card,.team-card { transition:transform .5s var(--ease-expo),box-shadow .5s ease,border-color .4s ease; }
     .feature:hover,.gallery-card:hover,.team-card:hover { transform:translateY(-7px);box-shadow:0 23px 45px #123e3820;border-color:#b8d8c9; }
     .feature img { transition:transform .8s var(--ease-expo),filter .6s ease; }
     .feature:hover img { transform:scale(1.065);filter:saturate(1.12); }
-    .hotspot { animation: hotspotPulse 3s ease-in-out infinite; }
-    .hotspot:nth-of-type(2){animation-delay:.6s}.hotspot:nth-of-type(3){animation-delay:1.2s}.hotspot:nth-of-type(4){animation-delay:1.8s}
-    .hotspot[aria-pressed="true"] { animation: hotspotActive 2s ease-in-out infinite; }
     .tour-panel { transition: border-color .3s ease, box-shadow .3s ease; }
     .tour-panel:hover { border-color:#d5f3e362; box-shadow:0 15px 35px #0002; }
-    .tour-panel.is-updating img,.tour-panel.is-updating h3,.tour-panel.is-updating p { animation: contentRise .5s both; }
-    .tour-panel.is-updating h3 { animation-delay:.05s; }.tour-panel.is-updating p { animation-delay:.1s; }
     .section--anatomy { position:relative;overflow:hidden; background:radial-gradient(circle at 94% 11%,#dfece2 0,transparent 28%),#f6f2e9; }
     .section--anatomy::before { content:"";position:absolute;width:520px;height:520px;border-radius:50%;right:-310px;bottom:-360px;border:1px solid #a4cbb552;box-shadow:0 0 0 72px #c6dac629,0 0 0 144px #c6dac615;pointer-events:none; }
     .anatomy-media { isolation:isolate; }
     .anatomy-media::after {content:"";position:absolute;inset:42% 0 0;background:linear-gradient(0deg,#0b272e86,transparent);pointer-events:none; }
-    .anatomy-media-glow {position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(110deg,transparent 25%,#ffffff3a 45%,transparent 60%);background-size:300% 100%;animation:softGlimmer 14s ease-in-out infinite;mix-blend-mode:soft-light;}
-    .anatomy-media img {transition:opacity .25s ease,transform 1.2s var(--ease-expo),filter 1.2s ease;}
+    .anatomy-media-glow {position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(110deg,transparent 25%,#ffffff3a 45%,transparent 60%);background-size:300% 100%;mix-blend-mode:soft-light;}
+    .anatomy-media img {transition:transform .3s ease;}
     .anatomy-media:hover img {transform:scale(1.045);}
     .anatomy-photo-tag { z-index:2;backdrop-filter:blur(8px);display:flex;gap:9px;align-items:center; }
-    .photo-tag-dot {width:7px;height:7px;flex:none;border-radius:50%;background:#f8ba63;box-shadow:0 0 0 4px #f8ba6342;animation:glowDot 2.5s infinite;}
+    .photo-tag-dot {width:7px;height:7px;flex:none;border-radius:50%;background:#f8ba63;box-shadow:0 0 0 4px #f8ba6342;}
     .anatomy-tabs {gap:10px;}
     .anatomy-tabs button {position:relative;overflow:hidden;display:flex; flex-direction:column;align-items:center;justify-content:center;gap:6px;min-height:88px; transition:transform .3s var(--ease-expo),background .3s ease,box-shadow .3s ease,border-color .3s ease;}
     .anatomy-tabs button:hover {transform:translateY(-3px);border-color:#84b6a5;}
     .anatomy-tabs button[aria-selected="true"] { box-shadow:0 14px 25px #092b3527; }
     .anatomy-tabs button span.anatomy-tab-symbol {display:block;font-size:1.55rem;font-weight:400;line-height:1;color:#4a8d83;transition:transform .35s ease,color .35s ease;}
     .anatomy-tabs button[aria-selected="true"] .anatomy-tab-symbol {color:#f9c47b;transform:scale(1.15) rotate(-12deg);}
-    .anatomy-detail.is-changing {animation:contentRise .48s var(--ease-expo) both;}
     .anatomy-index { display:inline-flex;align-items:center;gap:8px; }
     .anatomy-index::before { content:"";width:19px;height:2px;background:currentColor; }
     .anatomy-foot { display:flex;align-items:center;gap:8px; }
@@ -423,9 +417,7 @@
     .member-name {font-weight:700;font-size:.82rem;line-height:1.35;letter-spacing:-.018em;color:#2d514d;white-space:nowrap;}
     .back-top {transition:background .3s ease,transform .3s ease;}
     .back-top:hover {background:#ffffff20;transform:translateY(-3px);}
-    /* Reveal works only after JS adds motion-ready, preserving content without JS */
-    .motion-ready .reveal {opacity:0;transform:translateY(26px);filter:blur(4px);transition:opacity .85s var(--ease-expo),transform .85s var(--ease-expo),filter .85s ease;transition-delay:var(--reveal-delay,0ms);}
-    .motion-ready .reveal.is-visible {opacity:1;transform:translateY(0);filter:blur(0);}
+    /* All below-the-fold sections remain immediately visible while scrolling. */
     @keyframes fadeEntrance {from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
     @keyframes photoEntrance {from{opacity:0;transform:translate(25px,24px) scale(.96)}to{opacity:1;transform:translate(0,0) scale(1)}}
     @keyframes titleShimmer {0%,100%{background-position:100% center}50%{background-position:0 center}}
@@ -437,12 +429,6 @@
     @keyframes spinPulse {0%,100%{transform:rotate(-15deg) scale(.9);opacity:.55}50%{transform:rotate(22deg) scale(1.15);opacity:1}}
     @keyframes scrollWheel {0%{opacity:0;transform:translateY(0)}40%{opacity:1}100%{opacity:0;transform:translateY(10px)}}
     @keyframes logoBreath {0%,100%{box-shadow:0 0 0 0 #9be1ce24}50%{box-shadow:0 0 0 9px #9be1ce12}}
-    @keyframes slowRotate {to{transform:rotate(360deg)}}
-    @keyframes hotspotPulse {0%,100%{box-shadow:0 0 0 7px #f5a94c55,0 10px 30px #0006}50%{box-shadow:0 0 0 13px #f5a94c08,0 10px 30px #0006}}
-    @keyframes hotspotActive {0%,100%{box-shadow:0 0 0 7px #ffffff3a,0 10px 30px #0006}50%{box-shadow:0 0 0 13px #ffffff08,0 10px 30px #0006}}
-    @keyframes contentRise {from{opacity:.25;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-    @keyframes softGlimmer {0%,50%{background-position:125% center}100%{background-position:-120% center}}
-    @keyframes glowDot {0%,100%{box-shadow:0 0 0 4px #f8ba6342}50%{box-shadow:0 0 0 8px #f8ba6310}}
     @media(max-width:1080px){.team-grid{grid-template-columns:1fr}.team-card-head{height:auto;min-height:135px}.team-card{padding:25px}.member-name{white-space:nowrap}}
     @media(max-width:900px){.hero-scroll{bottom:14px}.hero-orbit--one{right:0}.hero-orbit--two{left:0}}
     @media(max-width:620px){
@@ -460,8 +446,7 @@
       .member-index{margin-top:1px}
     }
     @media(prefers-reduced-motion:reduce){
-      .hero::before,.hero::after,.amb,.hero-photo img,.hero-photo-secondary,.hero-float,.hero-orbit,.hero h1 span,.brand-logo,.story-quote::after,.hotspot,.scroll-wheel::after,.anatomy-media-glow,.photo-tag-dot{animation:none!important}
-      .motion-ready .reveal{opacity:1!important;transform:none!important;filter:none!important}
+      .hero::before,.hero::after,.amb,.hero-photo img,.hero-photo-secondary,.hero-float,.hero-orbit,.hero h1 span,.brand-logo,.scroll-wheel::after{animation:none!important}
       .feature:hover,.gallery-card:hover,.team-card:hover,.video-card:hover,.hero-photo:hover{transform:none}
     }
 
@@ -563,8 +548,8 @@
           <div>
             <div class="tour-photo" aria-label="Paparan interaktif terrarium" data-aria-t="ariaExplorer">
               <img src="assets/terrarium-hadapan.jpeg" data-alt-t="altExplore" alt="Pandangan terrarium dengan empat penanda" loading="lazy">
-              <button class="hotspot" data-target="stone" type="button" aria-pressed="false" aria-label="1: Rumah batu">1</button>
-              <button class="hotspot" data-target="pineapple" type="button" aria-pressed="true" aria-label="2: Rumah nanas">2</button>
+              <button class="hotspot" data-target="stone" type="button" aria-pressed="false" aria-label="2: Rumah batu">2</button>
+              <button class="hotspot" data-target="pineapple" type="button" aria-pressed="true" aria-label="1: Rumah nanas">1</button>
               <button class="hotspot" data-target="path" type="button" aria-pressed="false" aria-label="3: Laluan batu">3</button>
               <button class="hotspot" data-target="green" type="button" aria-pressed="false" aria-label="4: Hijauan dan medium">4</button>
             </div>
@@ -1199,37 +1184,15 @@
       document.querySelectorAll('.hotspot').forEach(el => {el.setAttribute('aria-pressed',String(el.dataset.target === currentTour));el.setAttribute('aria-label',`${el.textContent}: ${localized(SITE_DATA.features.find(f => f.id === el.dataset.target)?.title)}`);});
       $('tour-picker').innerHTML = SITE_DATA.features.map(f => `<button type="button" data-pick="${esc(f.id)}" aria-pressed="${f.id === currentTour}" aria-label="${esc(localized(f.title))}">${f.number}</button>`).join('');
     }
-    let lastRenderedLayer = null;
-    let imageSwitchToken = 0;
     function renderLayer() {
       const layer=SITE_DATA.layers.find(x=>x.id===currentLayer) || SITE_DATA.layers[0];
       const img=$('anatomy-image');
-      const layerChanged = lastRenderedLayer !== layer.id;
-      if (layerChanged) {
-        const token=++imageSwitchToken;
-        const nextImage = new Image();
-        img.style.opacity='0';
-        const finish = () => {
-          if (token!==imageSwitchToken) return;
-          img.src=layer.image;
-          img.alt=localized(layer.alt);
-          requestAnimationFrame(()=>{ if(token===imageSwitchToken) img.style.opacity='1'; });
-        };
-        nextImage.onload=finish;
-        nextImage.onerror=finish;
-        nextImage.src=layer.image;
-      } else { img.alt=localized(layer.alt); }
-      lastRenderedLayer=layer.id;
-      const detail=$('layer-panel');
+      if (img.getAttribute('src') !== layer.image) img.src=layer.image;
+      img.alt=localized(layer.alt);
       $('anatomy-index').textContent=layer.number+' / 03';
       $('anatomy-title').textContent=localized(layer.title);
       $('anatomy-description').textContent=localized(layer.description);
-      detail.setAttribute('aria-labelledby','layer-tab-'+layer.id);
-      if (layerChanged) {
-        detail.classList.remove('is-changing');
-        void detail.offsetWidth;
-        detail.classList.add('is-changing');
-      }
+      $('layer-panel').setAttribute('aria-labelledby','layer-tab-'+layer.id);
       document.querySelectorAll('[data-layer]').forEach(btn=>{
         const active=btn.dataset.layer===layer.id;
         btn.setAttribute('aria-selected',String(active));
@@ -1265,9 +1228,7 @@
     }
     function setTour(id) { if(SITE_DATA.features.some(f=>f.id===id)) {
       currentTour=id;renderTour();
-      const panel=document.querySelector('.tour-panel');
-      panel.classList.remove('is-updating'); void panel.offsetWidth;
-      panel.classList.add('is-updating');
+      // The selected details appear immediately, without fade or entrance delay.
     } }
     function showDialogPhoto() {
       const item=shownGallery[currentPhoto]; if(!item) return;
@@ -1313,30 +1274,7 @@
       document.querySelectorAll('main section[id]').forEach(s=>observer.observe(s));
     }
     translate();
-    // Progressive enhancement: content remains visible when scripts or observers are unavailable.
-    const reduceMotion=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (!reduceMotion && 'IntersectionObserver' in window) {
-      const candidates=document.querySelectorAll('.section .eyebrow, .section .heading, .section .lead, .story-copy p, .story-quote, .feature, .tour-photo, .tour-panel, .anatomy-media, .anatomy-content, .video-card, .process-side figure, .steps li, .gallery-card, .team-card');
-      candidates.forEach((el,i)=>{ el.classList.add('reveal'); el.style.setProperty('--reveal-delay', ((i%4)*65)+'ms'); });
-      document.body.classList.add('motion-ready');
-      const revealObserver=new IntersectionObserver((entries,observer)=>{
-        entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target);}});
-      },{threshold:.06,rootMargin:'0px 0px -35px 0px'});
-      candidates.forEach(el=>revealObserver.observe(el));
-      // Rendered cards are rebuilt when switching language or gallery category.
-      const newCardsObserver=new MutationObserver(records=>{
-        for(const record of records){
-          for(const node of record.addedNodes){
-            if(node.nodeType!==1)continue;
-            if(node.matches?.('.feature,.gallery-card,.team-card,.steps li')) {
-              node.classList.add('reveal');node.style.setProperty('--reveal-delay','60ms');
-              revealObserver.observe(node);
-            }
-          }
-        }
-      });
-      ['features','gallery-grid','team-grid','process-steps'].forEach(id=>newCardsObserver.observe($(id),{childList:true}));
-    }
+    // No scroll reveal, delays, or MutationObserver: content is always immediately visible.
     const header=$('top');
     const updateHeader=()=>header.classList.toggle('is-scrolled',window.scrollY>14);
     window.addEventListener('scroll',updateHeader,{passive:true});updateHeader();
